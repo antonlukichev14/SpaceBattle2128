@@ -8,8 +8,6 @@ namespace SpaceBattle2128
 {
     abstract class Scene
     {
-        public char inputChar;
-
         public virtual void Start()
         {
             SceneLoop();
@@ -21,7 +19,7 @@ namespace SpaceBattle2128
             {
                 Update();
                 Render();
-                inputChar = Input.GetKey();
+                Input.SetKey();
             }
         }
 
