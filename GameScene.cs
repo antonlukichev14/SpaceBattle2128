@@ -33,7 +33,7 @@ namespace SpaceBattle2128
 
         protected override void Render()
         {
-            GameSceneRender.Render();
+
         }
     }
 }
