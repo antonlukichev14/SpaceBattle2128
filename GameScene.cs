@@ -8,13 +8,14 @@ namespace SpaceBattle2128
 {
     class GameScene : Scene
     {
-        public List<GameObject> gameObjects;
-        public bool[,] Walls;
+        public Grid grid;
 
         public override void Start()
         {
-            //Создание Player
-            
+            grid = GameSceneGenerator.WallsGenerate(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+
+            //Другие функции создания локации
+
             base.Start();
         }
 
@@ -25,11 +26,7 @@ namespace SpaceBattle2128
 
         private void GameObjectsUpdate()
         {
-            int gameObjectsCount = gameObjects.Count;
-            for (int i = 0; i < gameObjectsCount; i++)
-            {
-                gameObjects[i].Update();
-            }
+            //Обновление игровой логики по радиусу
         }
 
         protected override void Render()

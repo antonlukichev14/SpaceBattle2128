@@ -8,16 +8,16 @@ namespace SpaceBattle2128
 {
     static class GameSceneGenerator
     {
-        static bool[,] WallsGenerate(int width, int height)
+        public static Grid WallsGenerate(int width, int height)
         {
-            bool[,] walls = new bool[width, height];
+            Grid grid = new Grid(width, height);
 
             //Здесь будет алгоритм создания карты
 
-            return walls;
+            return grid;
         }
 
-        static GameObject[] GameObjectsGenerate(GameObject prefab, int count, bool[,] walls)
+        public static GameObject[] GameObjectsGenerate(GameObject prefab, int count, bool[,] walls)
         {
             //Здесь будет код для генерации объектов на карте.
 
