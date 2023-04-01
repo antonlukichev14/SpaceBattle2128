@@ -13,6 +13,10 @@ namespace SpaceBattle2128
         public Grid(int width, int height)
         {
             tiles = new Tile[width, height];
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    tiles[x, y] = new Tile();
         }
     }
 }

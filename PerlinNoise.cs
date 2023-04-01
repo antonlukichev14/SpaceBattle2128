@@ -1,6 +1,6 @@
 using Single = System.Single;
 
-namespace ConsoleApp6
+namespace SpaceBattle2128
 {
 	public class PerlinNoise
 	{
