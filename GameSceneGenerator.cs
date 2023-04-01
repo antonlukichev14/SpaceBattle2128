@@ -11,13 +11,16 @@ namespace SpaceBattle2128
         public static Grid WallsGenerate(int width, int height)
         {
             Grid grid = new Grid(width, height);
+            PerlinNoise noise = new PerlinNoise();
 
-            //Здесь будет алгоритм создания карты
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    grid.tiles[x, y].wall = noise.GetNoise(x, y) > 0.1;
 
             return grid;
         }
 
-        public static GameObject[] GameObjectsGenerate(GameObject prefab, int count, bool[,] walls)
+        public static Grid GameObjectsGenerate(GameObject prefab, int count, Grid grid)
         {
             //Здесь будет код для генерации объектов на карте.
 
