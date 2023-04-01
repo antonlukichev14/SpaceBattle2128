@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SpaceBattle2128
 {
@@ -6,27 +6,27 @@ namespace SpaceBattle2128
     {
         public override void Update()
         {
-            Vector2 playerMove = new Vector2();
+
             switch (Input.GetKey())
             {
                 case ConsoleKey.W:
-                    playerMove.x = 0; playerMove.y = -1;
-                    Move(playerMove);
+                    position.x = 0; position.y = -1;
+                    Move(position);
                     break;
 
                 case ConsoleKey.S:
-                    playerMove.x = 0; playerMove.y = 1;
-                    Move(playerMove);
+                    position.x = 0; position.y = 1;
+                    Move(position);
                     break;
 
                 case ConsoleKey.A:
-                    playerMove.x = -1; playerMove.y = 0;
-                    Move(playerMove);
+                    position.x = -1; position.y = 0;
+                    Move(position);
                     break;
 
                 case ConsoleKey.D:
-                    playerMove.x = 1; playerMove.y = 0;
-                    Move(playerMove);
+                    position.x = 1; position.y = 0;
+                    Move(position);
                     break;
             }
         }
