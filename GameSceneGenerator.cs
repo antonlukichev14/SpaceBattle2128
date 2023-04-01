@@ -15,7 +15,7 @@ namespace SpaceBattle2128
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    grid.tiles[x, y] = noise.GetNoise(x, y) > 0.1;
+                    grid.tiles[x, y].wall = noise.GetNoise(x, y) > 0.1;
 
             return grid;
         }
