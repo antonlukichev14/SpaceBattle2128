@@ -4,16 +4,17 @@ namespace SpaceBattle2128
 {
     static class Input
     {
-        private static char inputChar;
+        private static ConsoleKey inputKey;
+
 
         public static void SetKey()
         {
-            inputChar = Console.ReadKey().KeyChar;
+            inputKey = Console.ReadKey(true).Key;
         }
 
-        public static char GetKey()
+        public static ConsoleKey GetKey()
         {
-            return inputChar;
+            return inputKey;
         }
     }
 }
