@@ -20,7 +20,7 @@ namespace SpaceBattle2128
             return grid;
         }
 
-        public static GameObject[] GameObjectsGenerate(GameObject prefab, int count, bool[,] walls)
+        public static Grid GameObjectsGenerate(GameObject prefab, int count, Grid grid)
         {
             //Здесь будет код для генерации объектов на карте.
 
