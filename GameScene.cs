@@ -13,8 +13,9 @@ namespace SpaceBattle2128
 
         public override void Start()
         {
-            base.Start();
             //Создание Player
+            
+            base.Start();
         }
 
         protected override void Update()
