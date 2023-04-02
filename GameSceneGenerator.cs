@@ -34,30 +34,38 @@
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                 {
-                    Tile tile = grid.tiles[centreX + x, centreY + y];
-                    tile.wall = false;
+                    Tile tile = grid.tiles[centreX + x, centreY + y];                   
 
                     if (x == 0 || y == 0 || x == (width - 1) || y == (height - 1))
+                    {
                         tile.currentObject = saveZoneWall;
+                        tile.wall = true;
+                    }
                     else
+                    {
                         tile.currentFloorObject = saveZoneFloor;
+                        tile.wall = false;
+                    }                      
                 }
 
-            centreX += (width / 2);
+            int doorX = centreX + (width / 2);
+            int doorY = centreY + (height - 1);
 
-            Tile door = grid.tiles[centreX, centreY];
+            Tile door = grid.tiles[doorX, doorY];
             door.currentObject = null;
             door.currentFloorObject = saveZoneFloor;
 
             for (int y = 1; true; y++)
             {
-                Tile path = grid.tiles[centreX, centreY + y];
+                if (doorY + y >= height) break;
+                Tile path = grid.tiles[doorX, doorY + y];
 
                 if (path.wall)
                 {
-                    path.wall = false;
                     path.currentFloorObject = saveZoneFloor;
-                }                  
+                    path.wall = false;
+                }
+                else break;
             }
         }
     }
