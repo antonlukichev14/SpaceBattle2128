@@ -2,16 +2,14 @@
 {
     static class GameSceneGenerator
     {
-        public static Grid GenerateWalls(int width, int height)
+        public static void GenerateWalls(Grid grid, int width, int height)
         {
-            Grid grid = new Grid(width, height);
+            grid = new Grid(width, height);
             PerlinNoise noise = new PerlinNoise();
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                     grid.tiles[x, y].wall = noise.GetNoise(x, y) > 0.1;
-
-            return grid;
         }
 
         public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)

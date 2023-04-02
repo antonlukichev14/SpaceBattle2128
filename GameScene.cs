@@ -16,7 +16,7 @@ namespace SpaceBattle2128
         {
             currentGameScene = this;
 
-            grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+            GameSceneGenerator.GenerateWalls(grid, Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
 
             //Другие функции создания локации
 
