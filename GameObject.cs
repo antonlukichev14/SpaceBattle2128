@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 
 namespace SpaceBattle2128
 {
-    public abstract class GameObject
+    public class GameObject
     {
         public byte renderID;
         public string tag;
 
-        public abstract void Update();
+        public GameObject() { }
+
+        private GameObject(GameObject gameObject)
+        {
+            renderID = gameObject.renderID;
+            tag = gameObject.tag;
+        }
+
+        public GameObject Copy() { return new GameObject(this); }
+
+        public virtual void Update() { }
     }
 }

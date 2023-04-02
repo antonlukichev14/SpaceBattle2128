@@ -1,4 +1,6 @@
-﻿namespace SpaceBattle2128
+﻿using System;
+
+namespace SpaceBattle2128
 {
     static class GameSceneGenerator
     {
@@ -14,7 +16,50 @@
 
         public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
         {
-            //Здесь будет код для генерации объектов на карте.
+            if (count <= 0) return;
+
+            bool[,] canPlace = grid.CanPlace();
+
+            int radius = 5;
+            int radius2 = radius * radius;
+            bool[,] inRadius = new bool[radius * 2 - 1, radius * 2 - 1];
+
+            inRadius[(radius - 1), (radius - 1)] = true;
+            for (int j = 0; j < radius; j++)
+            {
+                int j2 = j * j;
+                for (int i = 0; i < radius; i++)
+                {
+                    inRadius[i, j] = (i * i + j2 <= radius2);
+                }                    
+            }                              
+
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
+                {
+                    if (canPlace[x, y])
+                    {
+                        grid.tiles[x, y].currentObject = prefab.Copy();                       
+                        count--;
+
+                        canPlace[x, y] = false;
+                        for (int j = 1; j < radius; j++)
+                        {
+                            for (int i = 1; i < radius; i++)
+                            {
+                                if (inRadius[i, j])
+                                {
+                                    canPlace[x + i, y + j] = false;
+                                    canPlace[x + i, y - j] = false;
+                                    canPlace[x - i, y + j] = false;
+                                    canPlace[x - i, y - j] = false;
+                                }
+                            }
+                        }
+
+                        if (count <= 0) return;
+                    }
+                }
         }
 
         public static void GenerateSaveZone(Grid grid, byte floorID, byte wallID)
