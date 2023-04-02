@@ -10,23 +10,19 @@ namespace SpaceBattle2128
             switch (Input.GetKey())
             {
                 case ConsoleKey.W:
-                    position.x = 0; position.y = -1;
-                    Move(position);
+                    Move(new Vector2(0, 1));
                     break;
 
                 case ConsoleKey.S:
-                    position.x = 0; position.y = 1;
-                    Move(position);
+                    Move(new Vector2(0, -1));
                     break;
 
                 case ConsoleKey.A:
-                    position.x = -1; position.y = 0;
-                    Move(position);
+                    Move(new Vector2(-1, 0));
                     break;
 
                 case ConsoleKey.D:
-                    position.x = 1; position.y = 0;
-                    Move(position);
+                    Move(new Vector2(1, 0));
                     break;
             }
         }

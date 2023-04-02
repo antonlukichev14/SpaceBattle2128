@@ -8,7 +8,6 @@ namespace SpaceBattle2128
 {
     abstract class GameObject
     {
-        public Vector2 position;
         public byte renderID;
         public string tag;
         public byte z; //Перекрытие при рендере
