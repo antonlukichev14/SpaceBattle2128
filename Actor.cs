@@ -10,7 +10,7 @@
             if (GameScene.currentGameScene.grid.tiles[position.x + direction.x, position.y + direction.y].wall == false)
             {
                 // проверка на невыход за границы массива
-                if (position.x + direction.x > 0 && position.x + direction.x < GameScene.currentGameScene.grid.tiles.GetLength(0) && position.y + direction.y > 0 && position.y + direction.y < GameScene.currentGameScene.grid.tiles.GetLength(1))
+                if (position.x + direction.x > 0 && position.x + direction.x < GameScene.currentGameScene.grid.tiles.GetLength(1) && position.y + direction.y > 0 && position.y + direction.y < GameScene.currentGameScene.grid.tiles.GetLength(0))
                 {
                     //Изменяет положение в соответсвующем направлении
                     GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;

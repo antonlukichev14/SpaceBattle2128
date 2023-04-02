@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpaceBattle2128
+﻿namespace SpaceBattle2128
 {
     class GameScene : Scene
     {
@@ -35,7 +29,7 @@ namespace SpaceBattle2128
 
         protected override void Render()
         {
-            GameSceneRender.Render();
+            GameSceneRender.Render(currentGameScene);
         }
     }
 }
