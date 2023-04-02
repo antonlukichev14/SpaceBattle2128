@@ -10,8 +10,8 @@ namespace SpaceBattle2128
     {
         static Dictionary<byte, char> renderList = new Dictionary<byte, char>
         {
-            { 0, ' ' },
-            { 1, '#' }
+            { 0, ' ' }, //wall = false
+            { 1, '#' } //wall = true
         };
 
         static char Get(byte renderID)
