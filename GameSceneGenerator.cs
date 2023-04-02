@@ -4,14 +4,16 @@ namespace SpaceBattle2128
 {
     static class GameSceneGenerator
     {
-        public static void GenerateWalls(Grid grid, int width, int height)
+        public static Grid GenerateWalls(int width, int height)
         {
-            grid = new Grid(width, height);
+            Grid grid = new Grid(width, height);
             PerlinNoise noise = new PerlinNoise();
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                     grid.tiles[x, y].wall = (noise.GetNoise(x, y) > 0.1);
+
+            return grid;
         }
 
         public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
@@ -39,7 +41,7 @@ namespace SpaceBattle2128
             bool[,] canPlace = new bool[grid.width, grid.height];
 
             for (int y = 0; y < grid.height; y++)
-                for (int x = 0; x < grid.width - radius; x++)
+                for (int x = 0; x < grid.width; x++)
                 {
                     canPlace[x, y] = true;
 

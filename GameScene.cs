@@ -10,7 +10,7 @@
         {
             currentGameScene = this;
 
-            GameSceneGenerator.GenerateWalls(grid, Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+            grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
 
             //Другие функции создания локации
 

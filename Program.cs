@@ -1,4 +1,7 @@
-﻿namespace SpaceBattle2128
+﻿using System;
+using System.Diagnostics;
+
+namespace SpaceBattle2128
 {
     class Program
     {
@@ -9,8 +12,14 @@
         static void Main(string[] args)
         {
             GameScene scene = new GameScene();
-            scene.Start();
-            GameSceneRender.Render(scene);
+            scene.grid = GameSceneGenerator.GenerateWalls(32, 32);
+            for (int y = 0; y < scene.grid.height; y++)
+            {
+                for (int x = 0; x < scene.grid.width; x++)
+                    Console.Write(scene.grid.tiles[x, y].wall ? '#' : ' ');
+                Console.WriteLine();
+            }
+                
             //currentScene = startScene;
             //currentScene.Start();
         }

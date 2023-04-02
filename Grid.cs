@@ -23,5 +23,7 @@ namespace SpaceBattle2128
                 for (int x = 0; x < width; x++)
                     tiles[x, y] = new Tile();
         }
+
+        public Grid() { }
     }
 }
