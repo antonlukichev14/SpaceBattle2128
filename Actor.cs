@@ -2,6 +2,8 @@
 {
     abstract class Actor : GameObject
     {
+        public Vector2 position;
+
         public void Move(Vector2 direction)
         {
             //Проверяет, возможно ли вообще переместиться в эту точку

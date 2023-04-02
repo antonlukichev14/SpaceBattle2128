@@ -8,5 +8,6 @@ namespace SpaceBattle2128
 {
     abstract class EffectObject:GameObject
     {
+
     }
 }
