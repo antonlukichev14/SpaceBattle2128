@@ -53,9 +53,9 @@ namespace SpaceBattle2128
                     if (tile.currentObject != null)
                     {
                         canPlace[x, y] = false;
-                        for (int j = 1; j < radius; j++)
+                        for (int j = 1; j <= radius; j++)
                         {
-                            for (int i = 1; i < radius; i++)
+                            for (int i = 1; i <= radius; i++)
                             {
                                 if (inRadius[i, j])
                                 {
@@ -79,9 +79,9 @@ namespace SpaceBattle2128
                         count--;
 
                         canPlace[x, y] = false;
-                        for (int j = 1; j < radius; j++)
+                        for (int j = 1; j <= radius; j++)
                         {
-                            for (int i = 1; i < radius; i++)
+                            for (int i = 1; i <= radius; i++)
                             {
                                 if (inRadius[i, j])
                                 {
