@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceBattle2128
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
         public byte renderID;
         public string tag;

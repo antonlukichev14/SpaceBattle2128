@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpaceBattle2128
+﻿namespace SpaceBattle2128
 {
     static class GameSceneGenerator
     {
-        public static Grid WallsGenerate(int width, int height)
+        public static Grid GenerateWalls(int width, int height)
         {
             Grid grid = new Grid(width, height);
             PerlinNoise noise = new PerlinNoise();
@@ -20,11 +14,30 @@ namespace SpaceBattle2128
             return grid;
         }
 
-        public static Grid GameObjectsGenerate(GameObject prefab, int count, Grid grid)
+        public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
         {
             //Здесь будет код для генерации объектов на карте.
+        }
 
-            return null;
+        public static void GenerateSaveZone(Grid grid, byte floorID, byte wallID)
+        {
+            string tag = "SaveZone";
+            int width = 5;
+            int height = 5;
+
+            FloorObject saveZoneFloor = new FloorObject(floorID, tag);
+            Wall saveZoneWall = new Wall(wallID, tag);
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    Tile tile = grid.tiles[x, y];
+
+                    if (x == 0 || y == 0 || x == (width - 1) || y == (height - 1))
+                        tile.currentObject = saveZoneWall;
+                    else
+                        tile.currentFloorObject = saveZoneFloor;
+                }
         }
     }
 }

@@ -8,7 +8,5 @@ namespace SpaceBattle2128
 {
     abstract class EffectObject:GameObject
     {
-        public byte renderID;
-        public string tag;
     }
 }
