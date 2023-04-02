@@ -11,14 +11,12 @@ namespace SpaceBattle2128
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    grid.tiles[x, y].wall = noise.GetNoise(x, y) > 0.1;
+                    grid.tiles[x, y].wall = (noise.GetNoise(x, y) > 0.1);
         }
 
         public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
         {
             if (count <= 0) return;
-
-            bool[,] canPlace = grid.CanPlace();
 
             int radius = 5;
             int radius2 = radius * radius;
@@ -30,9 +28,45 @@ namespace SpaceBattle2128
                 int j2 = j * j;
                 for (int i = 0; i < radius; i++)
                 {
-                    inRadius[i, j] = (i * i + j2 <= radius2);
-                }                    
-            }                              
+                    bool bl = (i * i + j2 <= radius2);
+                    inRadius[radius + i, radius + j] = bl;
+                    inRadius[radius - i, radius + j] = bl;
+                    inRadius[radius + i, radius - j] = bl;
+                    inRadius[radius - i, radius - j] = bl;
+                }
+            }
+
+            bool[,] canPlace = new bool[grid.width, grid.height];
+
+            for (int y = 0; y < grid.height; y++)
+                for (int x = 0; x < grid.width - radius; x++)
+                {
+                    canPlace[x, y] = true;
+
+                    Tile tile = grid.tiles[x, y];
+                    if (tile.wall)
+                    {
+                        canPlace[x, y] = false;
+                    }
+                    if (tile.currentObject != null)
+                    {
+                        canPlace[x, y] = false;
+                        for (int j = 1; j < radius; j++)
+                        {
+                            for (int i = 1; i < radius; i++)
+                            {
+                                if (inRadius[i, j])
+                                {
+                                    canPlace[x + i, y + j] = false;
+                                    canPlace[x + i, y - j] = false;
+                                    canPlace[x - i, y + j] = false;
+                                    canPlace[x - i, y - j] = false;
+                                }
+                            }
+                        }
+
+                    }
+                }                       
 
             for (int y = radius; y < (grid.height - radius); y++)
                 for (int x = radius; x < (grid.width - radius); x++)
