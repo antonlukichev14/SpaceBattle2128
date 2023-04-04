@@ -99,7 +99,7 @@ namespace SpaceBattle2128
                 }
         }
 
-        public static void GenerateSaveZone(Grid grid, byte floorID, byte wallID)
+        public static void GenerateSaveZone(Grid grid)
         {
             string tag = "SaveZone";
             int width = 5;
@@ -108,8 +108,8 @@ namespace SpaceBattle2128
             int centreX = grid.width / 2;
             int centreY = grid.height / 2;
 
-            FloorObject saveZoneFloor = new FloorObject(floorID, tag);
-            Wall saveZoneWall = new Wall(wallID, tag);
+            FloorObject saveZoneFloor = new FloorObject(2, tag);
+            Wall saveZoneWall = new Wall(3, tag);
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)

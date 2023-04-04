@@ -11,6 +11,7 @@
             currentGameScene = this;
 
             grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+            GameSceneGenerator.GenerateSaveZone(grid);
 
             //Другие функции создания локации
 

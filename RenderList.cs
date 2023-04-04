@@ -11,10 +11,12 @@ namespace SpaceBattle2128
         static Dictionary<byte, char> renderList = new Dictionary<byte, char>
         {
             { 0, ' ' }, //wall = false
-            { 1, '#' } //wall = true
+            { 1, '#' }, //wall = true
+            { 2, '*' }, //savezone floor id
+            { 3, '^' } //savezone wall id
         };
 
-        static char Get(byte renderID)
+        public static char Get(byte renderID)
         {
             return renderList[renderID];
         }
