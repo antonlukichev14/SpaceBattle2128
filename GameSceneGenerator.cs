@@ -150,7 +150,10 @@ namespace SpaceBattle2128
 
             int playerX = centreX + (width / 2);
             int playerY = centreY + (height / 2);
-            grid.tiles[playerX, playerY].currentObject = new Player(playerX, playerY);
+
+            Player player = new Player(playerX, playerY);
+            grid.tiles[playerX, playerY].currentObject = player;
+            GameScene.currentGameScene.player = player;
         }
     }
 }

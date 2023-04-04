@@ -10,7 +10,7 @@ namespace SpaceBattle2128
     {
         public bool wall = false;
 
-        public EffectObject currentEffectObject;
+        public EffectObject currentEffectObject = null;
         public GameObject currentObject = null;
         public FloorObject currentFloorObject = null;
     }

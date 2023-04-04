@@ -6,6 +6,8 @@
 
         public static GameScene currentGameScene;
 
+        public Player player;
+
         public override void Start()
         {
             currentGameScene = this;
@@ -25,7 +27,21 @@
 
         private void GameObjectsUpdate()
         {
-            //Обновление игровой логики по радиусу
+            player.Update();
+
+            for(int x = player.position.x - Properties.updateRadius; x <= player.position.x + Properties.updateRadius; x++)
+            {
+                for(int y = player.position.y - Properties.updateRadius; y <= player.position.y + Properties.updateRadius; y++)
+                {
+                    if((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
+                    {
+                        if(grid.tiles[x, y].currentObject != null)
+                        {
+                            grid.tiles[x, y].currentObject.Update();
+                        }
+                    }
+                }
+            }
         }
 
         protected override void Render()

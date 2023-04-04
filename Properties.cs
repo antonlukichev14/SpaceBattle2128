@@ -11,5 +11,6 @@ namespace SpaceBattle2128
     {
         public static int updateRadius = 30;
         public static Vector2 defaultGameSceneSize = new Vector2(256, 256);
+        public static Vector2 renderRadius = new Vector2(21, 15);
     }
 }
