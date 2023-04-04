@@ -147,6 +147,10 @@ namespace SpaceBattle2128
                 }
                 else break;
             }
+
+            int playerX = centreX + (width / 2);
+            int playerY = centreY + (height / 2);
+            grid.tiles[playerX, playerY].currentObject = new Player(playerX, playerY);
         }
     }
 }

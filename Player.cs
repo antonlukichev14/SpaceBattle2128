@@ -27,5 +27,9 @@ namespace SpaceBattle2128
             }
         }
 
+        public Player(int x, int y)
+        {
+            position = new Vector2(x, y);
+        }
     }
 }
