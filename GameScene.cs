@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SpaceBattle2128
 {
@@ -40,18 +41,25 @@ namespace SpaceBattle2128
         {
             player.Update();
 
+            List<GameObject> gameobjects = new List<GameObject>();
+
             for(int x = player.position.x - Properties.updateRadius; x <= player.position.x + Properties.updateRadius; x++)
             {
                 for(int y = player.position.y - Properties.updateRadius; y <= player.position.y + Properties.updateRadius; y++)
                 {
                     if((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
                     {
-                        if(grid.tiles[x, y].currentObject != null)
+                        if(grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != "Player")
                         {
-                            grid.tiles[x, y].currentObject.Update();
+                            gameobjects.Add(grid.tiles[x, y].currentObject);
                         }
                     }
                 }
+            }
+
+            foreach(GameObject gameObject in gameobjects)
+            {
+                gameObject.Update();
             }
         }
 

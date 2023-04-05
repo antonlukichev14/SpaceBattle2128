@@ -30,6 +30,7 @@ namespace SpaceBattle2128
         public Player(int x, int y)
         {
             renderID = 10;
+            tag = "Player";
 
             position = new Vector2(x, y);
         }
