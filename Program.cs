@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace SpaceBattle2128
+﻿namespace SpaceBattle2128
 {
     class Program
     {
@@ -11,6 +8,8 @@ namespace SpaceBattle2128
         //Запускает первую сцену
         static void Main(string[] args)
         {
+
+
             currentScene = startScene;
             currentScene.Start();
         }

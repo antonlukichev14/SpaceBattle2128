@@ -13,7 +13,7 @@ namespace SpaceBattle2128
             int centerX = Properties.renderRadius.x / 2;
             int centerY = Properties.renderRadius.y / 2;
 
-            for(int x = 0; x < Properties.renderRadius.x; x++)
+            for (int x = 0; x < Properties.renderRadius.x; x++)
             {
                 for (int y = 0; y < Properties.renderRadius.y; y++)
                 {
@@ -22,8 +22,9 @@ namespace SpaceBattle2128
 
                     if (positionX >= 0 && positionX < scene.grid.width && positionY >= 0 && positionY < scene.grid.height)
                     {
-                        if (scene.grid.tiles[positionX, positionY].wall) renderChar[x, y] = RenderList.Get(1);
-                        else renderChar[x, y] = RenderList.Get(0);
+                        //if (scene.grid.tiles[positionX, positionY].wall) renderChar[x, y] = RenderList.Get(1);
+                        //else renderChar[x, y] = RenderList.Get(0);
+                        renderChar[x, y] = scene.grid.tiles[positionX, positionY].wall == true ? RenderList.Get(1) : RenderList.Get(0);
 
                         if (scene.grid.tiles[positionX, positionY].currentFloorObject != null)
                             renderChar[x, y] = RenderList.Get(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentFloorObject.renderID);
@@ -41,9 +42,9 @@ namespace SpaceBattle2128
                 }
             }
 
-            for(int y = Properties.renderRadius.y - 1; y >= 0; y--)
+            for (int y = 0; y < Properties.renderRadius.y; y++)
             {
-                for(int x = 0; x < Properties.renderRadius.x; x++)
+                for (int x = 0; x < Properties.renderRadius.x; x++)
                 {
                     Console.Write(renderChar[x, y]);
                 }
@@ -57,9 +58,9 @@ namespace SpaceBattle2128
 
             char[,] renderChar = new char[scene.grid.width, scene.grid.height];
 
-            for(int x = 0; x < scene.grid.width; x++)
+            for (int x = 0; x < scene.grid.width; x++)
             {
-                for(int y = 0; y < scene.grid.height; y++)
+                for (int y = 0; y < scene.grid.height; y++)
                 {
                     if (scene.grid.tiles[x, y].wall) renderChar[x, y] = RenderList.Get(1);
                     else renderChar[x, y] = RenderList.Get(0);
