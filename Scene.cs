@@ -15,6 +15,7 @@ namespace SpaceBattle2128
 
         protected void SceneLoop()
         {
+            // Х**ня, надо пределать
             while (true)
             {
                 Update();

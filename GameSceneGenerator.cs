@@ -128,21 +128,68 @@ namespace SpaceBattle2128
                     }                      
                 }
 
-            int doorX = centreX + (width / 2);
-            int doorY = centreY + (height - 1);
+            int szCentreX = centreX + (width / 2);
+            int szCentreY = centreY + (height / 2);
 
-            Tile door = grid.tiles[doorX, doorY];
-            door.currentObject = null;
-            door.currentFloorObject = saveZoneFloor;
-            door.wall = false;
+            //Tile door = grid.tiles[szCentreX, szCentreY];
+            //door.currentObject = null;
+            //door.currentFloorObject = saveZoneFloor;
+            //door.wall = false;
 
-            for (int y = 1; true; y++)
+            for (int y = height - 1; true; y++)
             {
-                if (doorY + y >= height) break;
-                Tile path = grid.tiles[doorX, doorY + y];
+                int localY = centreY + y;
+                if (localY >= grid.height) break;
+                Tile path = grid.tiles[szCentreX, localY];
 
                 if (path.wall)
                 {
+                    path.currentObject = null;
+                    path.currentFloorObject = saveZoneFloor;
+                    path.wall = false;
+                }
+                else break;
+            }
+
+            for (int y = 0; true; y++)
+            {
+                int localY = centreY - y;
+                if (localY < 0) break;
+                Tile path = grid.tiles[szCentreX, localY];
+
+                if (path.wall)
+                {
+                    path.currentObject = null;
+                    path.currentFloorObject = saveZoneFloor;
+                    path.wall = false;
+                }
+                else break;
+            }
+
+            for (int x = width - 1; true; x++)
+            {
+                int localX = centreX + x;
+                if (localX >= grid.width) break;
+                Tile path = grid.tiles[localX, szCentreY];
+
+                if (path.wall)
+                {
+                    path.currentObject = null;
+                    path.currentFloorObject = saveZoneFloor;
+                    path.wall = false;
+                }
+                else break;
+            }
+
+            for (int x = 0; true; x++)
+            {
+                int localX = centreX - x;
+                if (localX < 0) break;
+                Tile path = grid.tiles[localX, szCentreY];
+
+                if (path.wall)
+                {
+                    path.currentObject = null;
                     path.currentFloorObject = saveZoneFloor;
                     path.wall = false;
                 }
