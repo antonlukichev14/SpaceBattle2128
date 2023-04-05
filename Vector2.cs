@@ -23,7 +23,7 @@ namespace SpaceBattle2128
             this.y = y;
         }
 
-        static float Distance(Vector2 first, Vector2 second)
+        public static int Distance(Vector2 first, Vector2 second)
         {
             //Возвращает дистанцию между двумя векторами.
             return 0;

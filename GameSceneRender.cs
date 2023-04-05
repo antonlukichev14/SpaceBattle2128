@@ -49,6 +49,16 @@ namespace SpaceBattle2128
                 }
                 Console.Write("\n");
             }
+
+            Console.Write("\n");
+
+            Console.WriteLine("Статистика:");
+            Console.WriteLine("Количество убитых врагов: {0}, Количество собранных ресурсов: {1}, Дистанция до безопасной зоны: {2}, Дистанция до выхода: {3}, Количество оставшихся роботов: {4}.", PlayerStats.enemyKills, PlayerStats.resourcesCount, PlayerStats.savezoneDistance, PlayerStats.exitzoneDistance, PlayerStats.livesCount);
+            Console.WriteLine("Координаты робота: {0}, {1}.", scene.player.position.x, scene.player.position.y);
+
+            Console.Write("\n");
+            Console.WriteLine("Управление:");
+            Console.Write("WASD - Перемещение");
         }
 
         static public void DevelopmentRender(GameScene scene)

@@ -9,9 +9,13 @@ namespace SpaceBattle2128
 
         public static GameScene currentGameScene;
 
+        public Vector2 savezonePosition = new Vector2(); //Для статистики
+
         public Player player;
 
         public int seed;
+
+        public bool playerInSaveZone; //Для того, чтобы не обновлять врагов, когда игрок в savezone
 
         public override void Start()
         {
@@ -25,7 +29,7 @@ namespace SpaceBattle2128
             currentGameScene = this;
 
             grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
-            GameSceneGenerator.GenerateSaveZone(grid);
+            GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
 
             //Другие функции создания локации
 

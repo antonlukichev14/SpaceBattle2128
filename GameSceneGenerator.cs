@@ -99,7 +99,7 @@ namespace SpaceBattle2128
                 }
         }
 
-        public static void GenerateSaveZone(Grid grid)
+        public static void GenerateSaveZone(Grid grid, Vector2 savezonePosition)
         {
             string tag = "SaveZone";
             int width = 5;
@@ -196,8 +196,9 @@ namespace SpaceBattle2128
                 else break;
             }
 
-            int playerX = centreX + (width / 2);
-            int playerY = centreY + (height / 2);
+            int playerX = centreX + (width / 2); int playerY = centreY + (height / 2);
+
+            savezonePosition.x = centreX + (width / 2); savezonePosition.y = centreY + (height / 2);
 
             Player player = new Player(playerX, playerY);
             grid.tiles[playerX, playerY].currentObject = player;

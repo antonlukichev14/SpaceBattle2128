@@ -25,6 +25,15 @@ namespace SpaceBattle2128
                     Move(new Vector2(1, 0));
                     break;
             }
+
+            if(GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == "SaveZone")
+            {
+                GameScene.currentGameScene.playerInSaveZone = true;
+            }
+            else
+            {
+                GameScene.currentGameScene.playerInSaveZone = false;
+            }
         }
 
         public Player(int x, int y)

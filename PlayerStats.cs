@@ -8,5 +8,23 @@ namespace SpaceBattle2128
 {
     static class PlayerStats
     {
+        public static int enemyKills;
+        public static int resourcesCount;
+        public static int savezoneDistance
+        {
+            get
+            {
+                return Vector2.Distance(GameScene.currentGameScene.savezonePosition, GameScene.currentGameScene.player.position);
+            }
+        }
+        public static int exitzoneDistance
+        {
+            get
+            {
+                //Доделать
+                return 0;
+            }
+        }
+        public static int livesCount;
     }
 }
