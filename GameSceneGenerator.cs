@@ -7,7 +7,7 @@ namespace SpaceBattle2128
         public static Grid GenerateWalls(int width, int height)
         {
             Grid grid = new Grid(width, height);
-            PerlinNoise noise = new PerlinNoise();
+            PerlinNoise noise = new PerlinNoise(GameScene.currentGameScene.seed);
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
@@ -134,6 +134,7 @@ namespace SpaceBattle2128
             Tile door = grid.tiles[doorX, doorY];
             door.currentObject = null;
             door.currentFloorObject = saveZoneFloor;
+            door.wall = false;
 
             for (int y = 1; true; y++)
             {

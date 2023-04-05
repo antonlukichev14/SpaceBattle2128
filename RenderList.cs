@@ -13,7 +13,9 @@ namespace SpaceBattle2128
             { 0, ' ' }, //wall = false
             { 1, '#' }, //wall = true
             { 2, '*' }, //savezone floor id
-            { 3, '^' } //savezone wall id
+            { 3, '^' }, //savezone wall id
+
+            { 10, 'P' } //Player
         };
 
         public static char Get(byte renderID)

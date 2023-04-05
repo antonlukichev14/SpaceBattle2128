@@ -1,4 +1,6 @@
-﻿namespace SpaceBattle2128
+﻿using System;
+
+namespace SpaceBattle2128
 {
     class GameScene : Scene
     {
@@ -8,8 +10,17 @@
 
         public Player player;
 
+        public int seed;
+
         public override void Start()
         {
+            if (Properties.seed == 0)
+            {
+                Random random = new Random();
+                seed = random.Next(int.MinValue, int.MaxValue);
+            }
+            else seed = Properties.seed;
+
             currentGameScene = this;
 
             grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
@@ -46,7 +57,8 @@
 
         protected override void Render()
         {
-            GameSceneRender.Render(currentGameScene);
+            if (!Properties.developmentRender) GameSceneRender.Render(currentGameScene);
+            else GameSceneRender.DevelopmentRender(currentGameScene);
         }
     }
 }
