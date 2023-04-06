@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceBattle2128
 {
@@ -18,9 +15,32 @@ namespace SpaceBattle2128
             { 10, 'P' } //Player
         };
 
+        static Dictionary<char, byte> reverseList = new Dictionary<char, byte>
+        {
+
+            { '#', 1 },
+            { '*', 2 },
+            { '^', 3},
+            { 'P', 10}
+
+        };
+
+        static Dictionary<byte, ConsoleColor> colorList = new Dictionary<byte, ConsoleColor>
+        {
+            { 0, ConsoleColor.White }, //wall = false
+            { 1, ConsoleColor.DarkGray }, //wall = true
+            { 2, ConsoleColor.Green }, //savezone floor id
+            { 3, ConsoleColor.Yellow }, //savezone wall id
+
+   
+            { 10, ConsoleColor.Blue },
+
+        };
         public static char Get(byte renderID)
         {
             return renderList[renderID];
         }
+        public static ConsoleColor GetColor(byte colorID) { return colorList[colorID]; }
+        public static byte GetNumber(char c) { return reverseList[c]; }
     }
 }

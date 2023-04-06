@@ -13,7 +13,7 @@ namespace SpaceBattle2128
             int centerX = Properties.renderRadius.x / 2;
             int centerY = Properties.renderRadius.y / 2;
 
-            for(int x = 0; x < Properties.renderRadius.x; x++)
+            for (int x = 0; x < Properties.renderRadius.x; x++)
             {
                 for (int y = 0; y < Properties.renderRadius.y; y++)
                 {
@@ -41,11 +41,19 @@ namespace SpaceBattle2128
                 }
             }
 
-            for(int y = Properties.renderRadius.y - 1; y >= 0; y--)
+            for (int y = Properties.renderRadius.y - 1; y >= 0; y--)
             {
-                for(int x = 0; x < Properties.renderRadius.x; x++)
+                for (int x = 0; x < Properties.renderRadius.x; x++)
                 {
-                    Console.Write(renderChar[x, y]);
+                    if (renderChar[x, y] != ' ')
+                    {
+                        Console.ForegroundColor = RenderList.GetColor(RenderList.GetNumber(renderChar[x, y]));
+                        Console.Write(renderChar[x, y]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+
+
+                    else { Console.Write(renderChar[x, y]); }
                 }
                 Console.Write("\n");
             }
@@ -67,9 +75,9 @@ namespace SpaceBattle2128
 
             char[,] renderChar = new char[scene.grid.width, scene.grid.height];
 
-            for(int x = 0; x < scene.grid.width; x++)
+            for (int x = 0; x < scene.grid.width; x++)
             {
-                for(int y = 0; y < scene.grid.height; y++)
+                for (int y = 0; y < scene.grid.height; y++)
                 {
                     if (scene.grid.tiles[x, y].wall) renderChar[x, y] = RenderList.Get(1);
                     else renderChar[x, y] = RenderList.Get(0);

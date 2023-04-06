@@ -26,7 +26,7 @@ namespace SpaceBattle2128
                     break;
             }
 
-            if(GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == "SaveZone")
+            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == "SaveZone")
             {
                 GameScene.currentGameScene.playerInSaveZone = true;
             }
