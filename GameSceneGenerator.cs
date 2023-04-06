@@ -131,11 +131,7 @@ namespace SpaceBattle2128
             int szCentreX = centreX + (width / 2);
             int szCentreY = centreY + (height / 2);
 
-            //Tile door = grid.tiles[szCentreX, szCentreY];
-            //door.currentObject = null;
-            //door.currentFloorObject = saveZoneFloor;
-            //door.wall = false;
-
+            grid.tiles[szCentreX, centreY + height - 1].currentFloorObject = saveZoneFloor;
             for (int y = height - 1; true; y++)
             {
                 int localY = centreY + y;
@@ -145,12 +141,12 @@ namespace SpaceBattle2128
                 if (path.wall)
                 {
                     path.currentObject = null;
-                    path.currentFloorObject = saveZoneFloor;
                     path.wall = false;
                 }
                 else break;
             }
 
+            grid.tiles[szCentreX, centreY].currentFloorObject = saveZoneFloor;
             for (int y = 0; true; y++)
             {
                 int localY = centreY - y;
@@ -160,12 +156,12 @@ namespace SpaceBattle2128
                 if (path.wall)
                 {
                     path.currentObject = null;
-                    path.currentFloorObject = saveZoneFloor;
                     path.wall = false;
                 }
                 else break;
             }
 
+            grid.tiles[centreX + width - 1, szCentreY].currentFloorObject = saveZoneFloor;
             for (int x = width - 1; true; x++)
             {
                 int localX = centreX + x;
@@ -175,12 +171,12 @@ namespace SpaceBattle2128
                 if (path.wall)
                 {
                     path.currentObject = null;
-                    path.currentFloorObject = saveZoneFloor;
                     path.wall = false;
                 }
                 else break;
             }
 
+            grid.tiles[centreX, szCentreY].currentFloorObject = saveZoneFloor;
             for (int x = 0; true; x++)
             {
                 int localX = centreX - x;
@@ -190,7 +186,6 @@ namespace SpaceBattle2128
                 if (path.wall)
                 {
                     path.currentObject = null;
-                    path.currentFloorObject = saveZoneFloor;
                     path.wall = false;
                 }
                 else break;
