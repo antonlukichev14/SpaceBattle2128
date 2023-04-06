@@ -18,5 +18,19 @@
                 }
             }
         }
+        public void MoveTo(Vector2 direction)
+        {
+            //Проверяет, возможно ли вообще переместиться в эту точку
+            if (direction.x > 0 && direction.x < GameScene.currentGameScene.grid.width && direction.y > 0 && direction.y < GameScene.currentGameScene.grid.height)
+            {
+                if (GameScene.currentGameScene.grid.tiles[direction.x, direction.y].wall == false)
+                {
+                    //Изменяет положение в соответсвующем направлении
+                    GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;
+                    GameScene.currentGameScene.grid.tiles[direction.x, direction.y].currentObject = this;
+
+                }
+            }
+        }
     }
 }
