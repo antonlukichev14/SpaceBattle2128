@@ -8,6 +8,6 @@
         public static Vector2 renderRadius = new Vector2(20, 10);
         public static bool developmentRender = false;
 
-        public static int seed = 1337; //0 - random value
+        public static int seed = 0; //0 - random value
     }
 }
