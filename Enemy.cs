@@ -86,7 +86,7 @@ namespace SpaceBattle2128
             {
                 for (int k = 1; ; k++)
                 {
-                    Vector2 possiblePos = position + nope * k;
+                    Vector2 possiblePos = position + k * nope;
                     if (TryExecute(possiblePos))
                     {
                         int possibleValue = Vector2.Distance(possiblePos, playerPos);
@@ -124,7 +124,7 @@ namespace SpaceBattle2128
             {
                 for (int k = 1; ; k++)
                 {
-                    Vector2 possiblePos = position + nope * k;
+                    Vector2 possiblePos = position + k * nope;
                     if (TryExecute(possiblePos))
                     {
                         int possibleValue = Vector2.Distance(possiblePos, playerPos);
@@ -199,7 +199,7 @@ namespace SpaceBattle2128
             {
                 for (int k = 1; ; k++)
                 {
-                    Vector2 possiblePos = position + nope*k;
+                    Vector2 possiblePos = position + k*nope;
                     if (TryExecute(possiblePos))
                     {
                         int possibleValue = Vector2.Distance(possiblePos, playerPos);
