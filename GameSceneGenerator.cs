@@ -16,7 +16,7 @@ namespace SpaceBattle2128
             return grid;
         }
 
-        public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
+        public static void GenerateFloorObjects(Grid grid, GameObject prefab, int count)
         {
             if (count <= 0) return;
 
@@ -77,6 +77,89 @@ namespace SpaceBattle2128
                     {
                         x += radius;
                         grid.tiles[x, y].currentObject = prefab.Copy();                       
+                        count--;
+
+                        canPlace[x, y] = false;
+                        for (int j = 1; j <= radius; j++)
+                        {
+                            for (int i = 1; i <= radius; i++)
+                            {
+                                if (inRadius[i, j])
+                                {
+                                    canPlace[x + i, y + j] = false;
+                                    canPlace[x + i, y - j] = false;
+                                    canPlace[x - i, y + j] = false;
+                                    canPlace[x - i, y - j] = false;
+                                }
+                            }
+                        }
+
+                        if (count <= 0) return;
+                    }
+                }
+        }
+
+        public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
+        {
+            if (count <= 0) return;
+
+            int radius = 5;
+            int radius2 = radius * radius;
+            bool[,] inRadius = new bool[radius * 2 + 1, radius * 2 + 1];
+
+            inRadius[radius, radius] = true;
+            for (int j = 1; j <= radius; j++)
+            {
+                int j2 = j * j;
+                for (int i = 1; i <= radius; i++)
+                {
+                    bool bl = (i * i + j2 <= radius2);
+                    inRadius[radius + i, radius + j] = bl;
+                    inRadius[radius - i, radius + j] = bl;
+                    inRadius[radius + i, radius - j] = bl;
+                    inRadius[radius - i, radius - j] = bl;
+                }
+            }
+
+            bool[,] canPlace = new bool[grid.width, grid.height];
+
+            for (int y = 0; y < grid.height; y++)
+                for (int x = 0; x < grid.width; x++)
+                {
+                    canPlace[x, y] = true;
+
+                    Tile tile = grid.tiles[x, y];
+                    if (tile.wall)
+                    {
+                        canPlace[x, y] = false;
+                    }
+                    if (tile.currentObject != null)
+                    {
+                        canPlace[x, y] = false;
+                        for (int j = 1; j <= radius; j++)
+                        {
+                            for (int i = 1; i <= radius; i++)
+                            {
+                                if (inRadius[i, j])
+                                {
+                                    canPlace[x + i, y + j] = false;
+                                    canPlace[x + i, y - j] = false;
+                                    canPlace[x - i, y + j] = false;
+                                    canPlace[x - i, y - j] = false;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
+                {
+                    if (canPlace[x, y])
+                    {
+                        x += radius;
+                        grid.tiles[x, y].currentObject = prefab.Copy();
                         count--;
 
                         canPlace[x, y] = false;

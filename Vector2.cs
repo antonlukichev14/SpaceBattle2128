@@ -28,5 +28,25 @@ namespace SpaceBattle2128
             //Возвращает дистанцию между двумя векторами.
             return 0;
         }
+
+        public static Vector2 operator +(Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.x + b.x, a.y + b.y);
+        }
+
+        public static Vector2 operator -(Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.x - b.x, a.y - b.y);
+        }
+
+        public static Vector2 operator *(int a, Vector2 b)
+        {
+            return new Vector2(a * b.x, a * b.y);
+        }
+
+        public static Vector2 operator /(int a, Vector2 b)
+        {
+            return new Vector2(b.x / a, b.y / a);
+        }
     }
 }
