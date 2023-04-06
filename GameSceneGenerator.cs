@@ -16,7 +16,7 @@ namespace SpaceBattle2128
             return grid;
         }
 
-        public static void GenerateFloorObjects(Grid grid, GameObject prefab, int count)
+        public static void GenerateFloorObjects(Grid grid, FloorObject prefab, int count)
         {
             if (count <= 0) return;
 
@@ -46,11 +46,11 @@ namespace SpaceBattle2128
                     canPlace[x, y] = true;
 
                     Tile tile = grid.tiles[x, y];
-                    if (tile.wall)
+                    if (tile.wall || tile.currentObject != null)
                     {
                         canPlace[x, y] = false;
                     }
-                    if (tile.currentObject != null)
+                    if (tile.currentFloorObject != null)
                     {
                         canPlace[x, y] = false;
                         for (int j = 1; j <= radius; j++)
@@ -76,7 +76,7 @@ namespace SpaceBattle2128
                     if (canPlace[x, y])
                     {
                         x += radius;
-                        grid.tiles[x, y].currentObject = prefab.Copy();                       
+                        grid.tiles[x, y].currentFloorObject = prefab.Copy();                       
                         count--;
 
                         canPlace[x, y] = false;
@@ -129,7 +129,7 @@ namespace SpaceBattle2128
                     canPlace[x, y] = true;
 
                     Tile tile = grid.tiles[x, y];
-                    if (tile.wall)
+                    if (tile.wall || tile.currentFloorObject != null)
                     {
                         canPlace[x, y] = false;
                     }

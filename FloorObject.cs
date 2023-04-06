@@ -15,5 +15,13 @@ namespace SpaceBattle2128
         {
             this.renderID = renderID; this.tag = tag;
         }
+
+        private FloorObject(FloorObject floorObject)
+        {
+            renderID = floorObject.renderID;
+            tag = floorObject.tag;
+        }
+
+        public FloorObject Copy() { return new FloorObject(this); }
     }
 }
