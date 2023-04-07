@@ -193,6 +193,7 @@ namespace SpaceBattle2128
         }
 
         public static void GenerateSaveZone(Grid grid) { GenerateSaveZone(grid, new Vector2()); }
+
         public static void GenerateSaveZone(Grid grid, Vector2 savezonePosition)
         {
             string tag = Properties.saveZoneTag;
