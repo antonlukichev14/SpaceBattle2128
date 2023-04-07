@@ -300,7 +300,7 @@ namespace SpaceBattle2128
             GameScene.currentGameScene.player = player;
         }
 
-        public static void GenerateExitZone(Grid grid)
+        public static void GenerateExitZone(Grid grid, Vector2 exitZonePosition)
         {
             string tag = Properties.exitZoneTag;
 
@@ -351,6 +351,8 @@ namespace SpaceBattle2128
                     }
                 }
             }
+
+            exitZonePosition = maxPos;
 
             int centreX = maxPos.x;
             int centreY = maxPos.y;
