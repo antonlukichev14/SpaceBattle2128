@@ -27,10 +27,10 @@ namespace SpaceBattle2128
             bool[,] inRadius = new bool[radius * 2 + 1, radius * 2 + 1];
 
             inRadius[radius, radius] = true;
-            for (int j = 1; j <= radius; j++)
+            for (int j = 0; j <= radius; j++)
             {
                 int j2 = j * j;
-                for (int i = 1; i <= radius; i++)
+                for (int i = 0; i <= radius; i++)
                 {
                     bool bl = (i * i + j2 <= radius2);
                     inRadius[radius + i, radius + j] = bl;
@@ -112,11 +112,10 @@ namespace SpaceBattle2128
             int radius2 = radius * radius;
             bool[,] inRadius = new bool[radius * 2 + 1, radius * 2 + 1];
 
-            inRadius[radius, radius] = true;
-            for (int j = 1; j <= radius; j++)
+            for (int j = 0; j <= radius; j++)
             {
                 int j2 = j * j;
-                for (int i = 1; i <= radius; i++)
+                for (int i = 0; i <= radius; i++)
                 {
                     bool bl = (i * i + j2 <= radius2);
                     inRadius[radius + i, radius + j] = bl;
