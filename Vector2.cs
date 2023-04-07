@@ -26,7 +26,8 @@ namespace SpaceBattle2128
         public static int Distance(Vector2 first, Vector2 second)
         {
             //Возвращает дистанцию между двумя векторами.
-            return 0;
+
+            return (int)Math.Sqrt(Math.Pow(first.x - second.x, 2) + Math.Pow(first.y - second.y, 2));
         }
 
         public static Vector2 operator +(Vector2 a, Vector2 b)

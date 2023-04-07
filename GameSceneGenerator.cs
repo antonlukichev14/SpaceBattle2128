@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SpaceBattle2128
 {
@@ -192,15 +194,22 @@ namespace SpaceBattle2128
 
         public static void GenerateSaveZone(Grid grid, Vector2 savezonePosition)
         {
-            string tag = "SaveZone";
-            int width = 5;
-            int height = 5;
+            string tag = Properties.saveZoneTag;
 
-            int centreX = grid.width / 2;
-            int centreY = grid.height / 2;
+            byte floorRenderID = Properties.saveZoneRenderIDFloor;
+            byte wallRenderID = Properties.saveZoneRenderIDWall;
 
-            FloorObject saveZoneFloor = new FloorObject(2, tag);
-            Wall saveZoneWall = new Wall(3, tag);
+            int width = Properties.saveZoneSize.x;
+            int height = Properties.saveZoneSize.y;
+
+            //int centreX = grid.width / 2;
+            //int centreY = grid.height / 2;
+
+            int centreX = 0;
+            int centreY = 0;
+
+            FloorObject saveZoneFloor = new FloorObject(floorRenderID, tag);
+            Wall saveZoneWall = new Wall(wallRenderID, tag);
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
@@ -237,20 +246,20 @@ namespace SpaceBattle2128
                 else break;
             }
 
-            grid.tiles[szCentreX, centreY].currentFloorObject = saveZoneFloor;
-            for (int y = 0; true; y++)
-            {
-                int localY = centreY - y;
-                if (localY < 0) break;
-                Tile path = grid.tiles[szCentreX, localY];
+            //grid.tiles[szCentreX, centreY].currentFloorObject = exitZoneFloor;
+            //for (int y = 0; true; y++)
+            //{
+            //    int localY = centreY - y;
+            //    if (localY < 0) break;
+            //    Tile path = grid.tiles[szCentreX, localY];
 
-                if (path.wall)
-                {
-                    path.currentObject = null;
-                    path.wall = false;
-                }
-                else break;
-            }
+            //    if (path.wall)
+            //    {
+            //        path.currentObject = null;
+            //        path.wall = false;
+            //    }
+            //    else break;
+            //}
 
             grid.tiles[centreX + width - 1, szCentreY].currentFloorObject = saveZoneFloor;
             for (int x = width - 1; true; x++)
@@ -267,20 +276,20 @@ namespace SpaceBattle2128
                 else break;
             }
 
-            grid.tiles[centreX, szCentreY].currentFloorObject = saveZoneFloor;
-            for (int x = 0; true; x++)
-            {
-                int localX = centreX - x;
-                if (localX < 0) break;
-                Tile path = grid.tiles[localX, szCentreY];
+            //grid.tiles[centreX, szCentreY].currentFloorObject = exitZoneFloor;
+            //for (int x = 0; true; x++)
+            //{
+            //    int localX = centreX - x;
+            //    if (localX < 0) break;
+            //    Tile path = grid.tiles[localX, szCentreY];
 
-                if (path.wall)
-                {
-                    path.currentObject = null;
-                    path.wall = false;
-                }
-                else break;
-            }
+            //    if (path.wall)
+            //    {
+            //        path.currentObject = null;
+            //        path.wall = false;
+            //    }
+            //    else break;
+            //}
 
             int playerX = centreX + (width / 2); int playerY = centreY + (height / 2);
 
@@ -289,6 +298,73 @@ namespace SpaceBattle2128
             Player player = new Player(playerX, playerY);
             grid.tiles[playerX, playerY].currentObject = player;
             GameScene.currentGameScene.player = player;
+        }
+
+        public static void GenerateExitZone(Grid grid)
+        {
+            string tag = Properties.exitZoneTag;
+
+            byte renderID = Properties.exitZoneRenderIDFloor;
+
+            int width = Properties.exitZoneSize.x;
+            int height = Properties.exitZoneSize.y;
+
+            bool[,] bools = new bool[grid.width, grid.width];
+            for (int y = 0; y < grid.height; y++)
+                for (int x = 0; x < grid.width; x++)
+                    bools[x, y] = false;
+
+            Vector2 szSize = Properties.saveZoneSize;
+            Vector2[] neighbors = new Vector2[4]
+            { new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0) };
+
+            Queue<Vector2> queue = new Queue<Vector2>();
+
+            queue.Enqueue(new Vector2(szSize.x / 2, szSize.y));
+            queue.Enqueue(new Vector2(szSize.x, szSize.y / 2));
+
+            int maxDistance = 0;
+            Vector2 maxPos = new Vector2(0, 0);
+
+            while (queue.Count > 0)
+            {
+                Vector2 position = queue.Dequeue();
+                foreach (Vector2 add in neighbors)
+                {
+                    Vector2 newPos = position + add;
+
+                    int dx = newPos.x;
+                    int dy = newPos.y;
+
+                    if (dx < 0 || dy < 0 || dx >= (grid.width - width) || dy >= (grid.height - height)) continue;
+                    if (bools[dx, dy]) continue;
+                    if (grid.tiles[dx, dy].wall) continue;
+
+                    bools[dx, dy] = true;
+                    queue.Enqueue(newPos);
+
+                    int newDistance = Vector2.Distance(new Vector2(0, 0), newPos);
+                    if (newDistance > maxDistance)
+                    {
+                        maxDistance = newDistance;
+                        maxPos = newPos;
+                    }
+                }
+            }
+
+            int centreX = maxPos.x;
+            int centreY = maxPos.y;
+
+            FloorObject exitZoneFloor = new FloorObject(renderID, tag);
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    Tile tile = grid.tiles[centreX + x, centreY + y];
+
+                    tile.currentFloorObject = exitZoneFloor;
+                    tile.wall = false;
+                }
         }
     }
 }
