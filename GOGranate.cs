@@ -18,9 +18,9 @@ namespace SpaceBattle2128
         public GOGranate(int radius, Vector2 position) 
         { 
             this.radius = radius;
-            timer = radius+1;
             this.pos = position;
-         
+
+            timer = radius + 1;             
 
             bools = new bool[2 * radius + 1, 2 * radius + 1];
             for(int y = 0; y <= radius; y++)

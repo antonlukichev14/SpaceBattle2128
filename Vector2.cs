@@ -20,6 +20,8 @@ namespace SpaceBattle2128
             this.y = y;
         }
 
+        public Vector2(Vector2 vector) : this(vector.x, vector.y) { }
+
         public static int Distance(Vector2 first, Vector2 second)
         {
             //Возвращает дистанцию между двумя векторами.
