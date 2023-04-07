@@ -39,9 +39,12 @@ namespace SpaceBattle2128
             }
 
             bool[,] canPlace = new bool[grid.width, grid.height];
-
             for (int y = 0; y < grid.height; y++)
                 for (int x = 0; x < grid.width; x++)
+                    canPlace[x, y] = false;
+
+            for (int y = radius; y < (grid.height - radius - 1); y++)
+                for (int x = radius; x < (grid.width - radius - 1); x++)
                 {
                     canPlace[x, y] = true;
 
@@ -70,8 +73,8 @@ namespace SpaceBattle2128
                     }
                 }                       
 
-            for (int y = radius; y < (grid.height - radius); y++)
-                for (int x = radius; x < (grid.width - radius); x++)
+            for (int y = radius; y < (grid.height - radius - 1); y++)
+                for (int x = radius; x < (grid.width - radius - 1); x++)
                 {
                     if (canPlace[x, y])
                     {
@@ -122,9 +125,12 @@ namespace SpaceBattle2128
             }
 
             bool[,] canPlace = new bool[grid.width, grid.height];
-
             for (int y = 0; y < grid.height; y++)
                 for (int x = 0; x < grid.width; x++)
+                    canPlace[x, y] = false;
+
+            for (int y = radius; y < (grid.height - radius - 1); y++)
+                for (int x = radius; x < (grid.width - radius - 1); x++)
                 {
                     canPlace[x, y] = true;
 
@@ -153,8 +159,8 @@ namespace SpaceBattle2128
                     }
                 }
 
-            for (int y = radius; y < (grid.height - radius); y++)
-                for (int x = radius; x < (grid.width - radius); x++)
+            for (int y = radius; y < (grid.height - radius - 1); y++)
+                for (int x = radius; x < (grid.width - radius - 1); x++)
                 {
                     if (canPlace[x, y])
                     {
