@@ -10,7 +10,9 @@ namespace SpaceBattle2128
     {
         int radius;
         int timer;
+
         Vector2 pos;
+
         bool[,] bools;
 
         public GOGranate(int radius, Vector2 position) 
@@ -25,11 +27,11 @@ namespace SpaceBattle2128
             {
                 for (int x = 0; x <= radius; x++) 
                 {
-                    bool haha = (x * x + y * y <= radius * radius);
-                    bools[radius + x, radius + y] = haha;
-                    bools[radius - x, radius + y] = haha;
-                    bools[radius + x, radius - y] = haha;
-                    bools[radius - x, radius - y] = haha;
+                    bool bl = (x * x + y * y <= radius * radius);
+                    bools[radius + x, radius + y] = bl;
+                    bools[radius - x, radius + y] = bl;
+                    bools[radius + x, radius - y] = bl;
+                    bools[radius - x, radius - y] = bl;
 
                 }
             }
@@ -38,36 +40,25 @@ namespace SpaceBattle2128
         public override void Update()
         {
             timer--;
-            if (timer <= 0)
+            if (timer > 0) return;
+            Grid grid = GameScene.currentGameScene.grid;
+
+            for (int y = -radius; y <= radius; y++)
             {
-                Grid grid = GameScene.currentGameScene.grid;
-                for (int y = -radius; y <= radius; y++)
+                for (int x = -radius; x <= radius; x++)
                 {
-                    for (int x = -radius; x <= radius; x++)
-                    {
-                        int xpos = pos.x + x;
-                        int ypos = pos.y + y;
-                        if (xpos < 0 || ypos<0 || xpos>= Properties.defaultGameSceneSize.x || ypos >= Properties.defaultGameSceneSize.y)
-                        {
-                            continue;
-                        }
-                        if (!bools[radius+x, radius+y]) 
-                        {
-                            continue;
-                        }
-                        Tile tile = grid.tiles[xpos, ypos];
-                        if (tile.wall) 
-                        {
-                            continue;
-                        }
-                        if (tile.currentObject != null) 
-                        {
-                           // tile.currentObject.Kill(); 
-                        }
-                    }
+                    int xPos = pos.x + x;
+                    int yPos = pos.y + y;
+
+                    if (xPos < 0 || yPos < 0 || xPos >= grid.width || yPos >= grid.height) continue;
+                    if (!bools[radius + x, radius + y]) continue;
+
+                    Tile tile = grid.tiles[xPos, yPos];
+
+                    if (tile.wall) continue;
+                    if (tile.currentObject != null) /* tile.currentObject.Kill()*/;
                 }
             }
-
         }
     }
 }
