@@ -10,6 +10,7 @@ namespace SpaceBattle2128
         public static GameScene currentGameScene;
 
         public Vector2 savezonePosition = new Vector2(); //Для статистики
+        public Vector2 exitZonePosition = new Vector2(); //Для статистики
 
         public Player player;
 
@@ -30,7 +31,7 @@ namespace SpaceBattle2128
 
             grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
             GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
-            GameSceneGenerator.GenerateExitZone(grid);
+            GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
 
             //Другие функции создания локации
 
