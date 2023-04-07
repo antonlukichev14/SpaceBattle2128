@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SpaceBattle2128
 {
@@ -26,8 +23,9 @@ namespace SpaceBattle2128
         public static int Distance(Vector2 first, Vector2 second)
         {
             //Возвращает дистанцию между двумя векторами.
-
-            return (int)Math.Sqrt(Math.Pow(first.x - second.x, 2) + Math.Pow(first.y - second.y, 2));
+            //AB = √(xb - xa)2 + (yb - ya)2
+            double distance = Math.Sqrt(Math.Pow((second.x - first.x), 2) + Math.Pow((second.y - first.y), 2));
+            return (int)distance;
         }
 
         public static Vector2 operator +(Vector2 a, Vector2 b)
