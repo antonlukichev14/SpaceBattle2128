@@ -13,13 +13,13 @@ namespace SpaceBattle2128
 
         public GameObject() { }
 
-        private GameObject(GameObject gameObject)
+        protected GameObject(GameObject gameObject)
         {
             renderID = gameObject.renderID;
             tag = gameObject.tag;
         }
 
-        public GameObject Copy() { return new GameObject(this); }
+        virtual public GameObject Copy() { return new GameObject(this); }
 
         public virtual void Update() { }
     }

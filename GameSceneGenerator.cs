@@ -43,8 +43,8 @@ namespace SpaceBattle2128
                 for (int x = 0; x < grid.width; x++)
                     canPlace[x, y] = false;
 
-            for (int y = radius; y < (grid.height - radius - 1); y++)
-                for (int x = radius; x < (grid.width - radius - 1); x++)
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
                 {
                     canPlace[x, y] = true;
 
@@ -73,8 +73,8 @@ namespace SpaceBattle2128
                     }
                 }                       
 
-            for (int y = radius; y < (grid.height - radius - 1); y++)
-                for (int x = radius; x < (grid.width - radius - 1); x++)
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
                 {
                     if (canPlace[x, y])
                     {
@@ -102,7 +102,7 @@ namespace SpaceBattle2128
                 }
         }
 
-        public static void GenerateGameObjects(Grid grid, GameObject prefab, int count)
+        public static void GenerateGameObjects(Grid grid, Enemy prefab, int count)
         {
             if (count <= 0) return;
 
@@ -129,8 +129,8 @@ namespace SpaceBattle2128
                 for (int x = 0; x < grid.width; x++)
                     canPlace[x, y] = false;
 
-            for (int y = radius; y < (grid.height - radius - 1); y++)
-                for (int x = radius; x < (grid.width - radius - 1); x++)
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
                 {
                     canPlace[x, y] = true;
 
@@ -159,13 +159,15 @@ namespace SpaceBattle2128
                     }
                 }
 
-            for (int y = radius; y < (grid.height - radius - 1); y++)
-                for (int x = radius; x < (grid.width - radius - 1); x++)
+            for (int y = radius; y < (grid.height - radius); y++)
+                for (int x = radius; x < (grid.width - radius); x++)
                 {
                     if (canPlace[x, y])
                     {
                         x += radius;
-                        grid.tiles[x, y].currentObject = prefab.Copy();
+                        Enemy copy = prefab.Copy();
+                        copy.position = new Vector2(x, y);
+                        grid.tiles[x, y].currentObject = copy;
                         count--;
 
                         canPlace[x, y] = false;

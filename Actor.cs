@@ -32,5 +32,8 @@
                 }
             }
         }
+
+        protected Actor() { }
+        protected Actor(Actor actor) : base(actor) { }
     }
 }

@@ -8,6 +8,10 @@ namespace SpaceBattle2128
 {
     class Enemy : Actor
     {
+        protected Enemy(Enemy enemy) : base(enemy) { }
+
+        public override Enemy Copy() { return new Enemy(this); }
+
         /* public bool TryExecute(Vector2 prelocation) // попытка понять можно ли пройти в точку
         {
             try
