@@ -192,8 +192,6 @@ namespace SpaceBattle2128
                 }
         }
 
-        public static void GenerateSaveZone(Grid grid) { GenerateSaveZone(grid, new Vector2()); }
-
         public static void GenerateSaveZone(Grid grid, Vector2 savezonePosition)
         {
             string tag = Properties.saveZoneTag;
@@ -207,8 +205,8 @@ namespace SpaceBattle2128
             //int centreX = grid.width / 2;
             //int centreY = grid.height / 2;
 
-            int centreX = savezonePosition.x;
-            int centreY = savezonePosition.y;
+            int centreX = 0;
+            int centreY = 0;
 
             FloorObject saveZoneFloor = new FloorObject(floorRenderID, tag);
             Wall saveZoneWall = new Wall(wallRenderID, tag);
@@ -248,20 +246,20 @@ namespace SpaceBattle2128
                 else break;
             }
 
-            grid.tiles[szCentreX, centreY].currentFloorObject = saveZoneFloor;
-            for (int y = 0; true; y++)
-            {
-                int localY = centreY - y;
-                if (localY < 0) break;
-                Tile path = grid.tiles[szCentreX, localY];
+            //grid.tiles[szCentreX, centreY].currentFloorObject = saveZoneFloor;
+            //for (int y = 0; true; y++)
+            //{
+            //    int localY = centreY - y;
+            //    if (localY < 0) break;
+            //    Tile path = grid.tiles[szCentreX, localY];
 
-                if (path.wall)
-                {
-                    path.currentObject = null;
-                    path.wall = false;
-                }
-                else break;
-            }
+            //    if (path.wall)
+            //    {
+            //        path.currentObject = null;
+            //        path.wall = false;
+            //    }
+            //    else break;
+            //}
 
             grid.tiles[centreX + width - 1, szCentreY].currentFloorObject = saveZoneFloor;
             for (int x = width - 1; true; x++)
@@ -278,20 +276,20 @@ namespace SpaceBattle2128
                 else break;
             }
 
-            grid.tiles[centreX, szCentreY].currentFloorObject = saveZoneFloor;
-            for (int x = 0; true; x++)
-            {
-                int localX = centreX - x;
-                if (localX < 0) break;
-                Tile path = grid.tiles[localX, szCentreY];
+            //grid.tiles[centreX, szCentreY].currentFloorObject = saveZoneFloor;
+            //for (int x = 0; true; x++)
+            //{
+            //    int localX = centreX - x;
+            //    if (localX < 0) break;
+            //    Tile path = grid.tiles[localX, szCentreY];
 
-                if (path.wall)
-                {
-                    path.currentObject = null;
-                    path.wall = false;
-                }
-                else break;
-            }
+            //    if (path.wall)
+            //    {
+            //        path.currentObject = null;
+            //        path.wall = false;
+            //    }
+            //    else break;
+            //}
 
             int playerX = centreX + (width / 2); int playerY = centreY + (height / 2);
 
