@@ -11,7 +11,7 @@ namespace SpaceBattle2128
             { 1, '#' }, //wall = true
             { 2, '*' }, //savezone floor id
             { 3, '^' }, //savezone wall id
-
+            {4, 'S' },
             { 10, '\u0001' } //Player
         };
 
@@ -21,6 +21,7 @@ namespace SpaceBattle2128
             { '#', 1 },
             { '*', 2 },
             { '^', 3},
+            {'S', 4 },
             { '\u0001', 10}
 
         };
@@ -31,8 +32,9 @@ namespace SpaceBattle2128
             { 1, ConsoleColor.DarkGray }, //wall = true
             { 2, ConsoleColor.Green }, //savezone floor id
             { 3, ConsoleColor.Yellow }, //savezone wall id
+            { 4, ConsoleColor.Blue },
 
-   
+
             { 10, ConsoleColor.Red },
 
         };

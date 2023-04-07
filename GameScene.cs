@@ -13,6 +13,7 @@ namespace SpaceBattle2128
         public Vector2 exitZonePosition = new Vector2(); //Для статистики
 
         public Player player;
+        public Spawner spawner;
 
         public int seed;
 
@@ -49,13 +50,13 @@ namespace SpaceBattle2128
 
             List<GameObject> gameobjects = new List<GameObject>();
 
-            for(int x = player.position.x - Properties.updateRadius; x <= player.position.x + Properties.updateRadius; x++)
+            for (int x = player.position.x - Properties.updateRadius; x <= player.position.x + Properties.updateRadius; x++)
             {
-                for(int y = player.position.y - Properties.updateRadius; y <= player.position.y + Properties.updateRadius; y++)
+                for (int y = player.position.y - Properties.updateRadius; y <= player.position.y + Properties.updateRadius; y++)
                 {
-                    if((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
+                    if ((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
                     {
-                        if(grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != "Player")
+                        if (grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != "Player")
                         {
                             gameobjects.Add(grid.tiles[x, y].currentObject);
                         }
@@ -63,7 +64,7 @@ namespace SpaceBattle2128
                 }
             }
 
-            foreach(GameObject gameObject in gameobjects)
+            foreach (GameObject gameObject in gameobjects)
             {
                 gameObject.Update();
             }
