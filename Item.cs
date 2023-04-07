@@ -8,6 +8,8 @@ namespace SpaceBattle2128
 {
     abstract class Item
     {
+
         public abstract void Use();
+
     }
 }
