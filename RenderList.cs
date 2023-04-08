@@ -12,7 +12,8 @@ namespace SpaceBattle2128
             { 2, '*' }, //savezone floor id
             { 3, '^' }, //savezone wall id
             {4, 'S' },
-            { 10, '\u0001' } //Player
+            { 10, '\u0001' }, //Player
+            { 11, '1' } //EnemyKing
         };
 
         static Dictionary<char, byte> reverseList = new Dictionary<char, byte>
@@ -22,7 +23,8 @@ namespace SpaceBattle2128
             { '*', 2 },
             { '^', 3},
             {'S', 4 },
-            { '\u0001', 10}
+            { '\u0001', 10},
+            { '1', 11 }
 
         };
 
@@ -35,7 +37,8 @@ namespace SpaceBattle2128
             { 4, ConsoleColor.Blue },
 
 
-            { 10, ConsoleColor.Red },
+            { 10, ConsoleColor.DarkGreen },
+            { 11, ConsoleColor.Red }
 
         };
         public static char Get(byte renderID)

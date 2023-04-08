@@ -71,7 +71,7 @@ namespace SpaceBattle2128
         }
         public King(int x, int y) : base(x,y)
         {
-            // renderID = ;
+            renderID = 11;
             tag = "EnemyKing";
         }
     }
