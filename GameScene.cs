@@ -32,7 +32,7 @@ namespace SpaceBattle2128
             grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
             GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
             GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
-
+            GameSceneGenerator.GenerateGameObjects(grid, new Rook(0, 0), 400);
             //Другие функции создания локации
 
             base.Start();
