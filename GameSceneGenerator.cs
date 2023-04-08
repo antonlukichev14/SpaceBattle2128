@@ -99,8 +99,12 @@ namespace SpaceBattle2128
             Random random = new Random(GameScene.currentGameScene.seed);
             for (int q = 0; q < count; q++)
             {
+                int attempts = 1000;
                 while (true)
                 {
+                    attempts--;
+                    if (attempts < 0) return;
+
                     int x = random.Next(radius, grid.width - radius);
                     int y = random.Next(radius, grid.height - radius);
 
@@ -208,11 +212,15 @@ namespace SpaceBattle2128
             //        }
             //    }
 
-            Random random = new Random();
+            Random random = new Random();          
             for (int q = 0; q < count; q++)
             {
+                int attempts = 1000;
                 while (true)
                 {
+                    attempts--;
+                    if (attempts < 0) return;
+
                     int x = random.Next(radius, grid.width - radius);
                     int y = random.Next(radius, grid.height - radius);
 
