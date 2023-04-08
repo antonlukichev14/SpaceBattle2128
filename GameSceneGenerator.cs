@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SpaceBattle2128
 {
@@ -72,7 +70,7 @@ namespace SpaceBattle2128
                         }
 
                     }
-                }                       
+                }
 
             //for (int y = radius; y < (grid.height - radius); y++)
             //    for (int x = radius; x < (grid.width - radius); x++)
@@ -273,7 +271,7 @@ namespace SpaceBattle2128
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                 {
-                    Tile tile = grid.tiles[centreX + x, centreY + y];                   
+                    Tile tile = grid.tiles[centreX + x, centreY + y];
 
                     if (x == 0 || y == 0 || x == (width - 1) || y == (height - 1))
                     {
@@ -284,7 +282,7 @@ namespace SpaceBattle2128
                     {
                         tile.currentFloorObject = saveZoneFloor;
                         tile.wall = false;
-                    }                      
+                    }
                 }
 
             int szCentreX = centreX + (width / 2);
@@ -355,7 +353,9 @@ namespace SpaceBattle2128
             savezonePosition.x = centreX + (width / 2); savezonePosition.y = centreY + (height / 2);
 
             Player player = new Player(playerX, playerY);
+            Spawner spawner = new Spawner();
             grid.tiles[playerX, playerY].currentObject = player;
+            spawner.Spawn();
             GameScene.currentGameScene.player = player;
         }
 
