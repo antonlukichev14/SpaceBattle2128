@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SpaceBattle2128
 {
@@ -72,14 +73,44 @@ namespace SpaceBattle2128
                     }
                 }
 
-            for (int y = radius; y < (grid.height - radius); y++)
-                for (int x = radius; x < (grid.width - radius); x++)
+            //for (int y = radius; y < (grid.height - radius); y++)
+            //    for (int x = radius; x < (grid.width - radius); x++)
+            //    {
+            //        if (canPlace[x, y])
+            //        {
+            //            x += radius;
+            //            grid.tiles[x, y].currentFloorObject = prefab.Copy();                       
+            //            count--;
+
+            //            for (int j = 0; j <= radius; j++)
+            //            {
+            //                for (int i = 0; i <= radius; i++)
+            //                {
+            //                    if (inRadius[i, j])
+            //                    {
+            //                        canPlace[x + i, y + j] = false;
+            //                        canPlace[x + i, y - j] = false;
+            //                        canPlace[x - i, y + j] = false;
+            //                        canPlace[x - i, y - j] = false;
+            //                    }
+            //                }
+            //            }
+
+            //            if (count <= 0) return;
+            //        }
+            //    }
+
+            Random random = new Random(GameScene.currentGameScene.seed);
+            for (int q = 0; q < count; q++)
+            {
+                while (true)
                 {
+                    int x = random.Next(radius, grid.width - radius);
+                    int y = random.Next(radius, grid.height - radius);
+
                     if (canPlace[x, y])
                     {
-                        x += radius;
                         grid.tiles[x, y].currentFloorObject = prefab.Copy();
-                        count--;
 
                         for (int j = 0; j <= radius; j++)
                         {
@@ -95,9 +126,10 @@ namespace SpaceBattle2128
                             }
                         }
 
-                        if (count <= 0) return;
+                        break;
                     }
                 }
+            }
         }
 
         public static void GenerateGameObjects(Grid grid, Enemy prefab, int count)
@@ -155,16 +187,48 @@ namespace SpaceBattle2128
                     }
                 }
 
-            for (int y = radius; y < (grid.height - radius); y++)
-                for (int x = radius; x < (grid.width - radius); x++)
+            //for (int y = radius; y < (grid.height - radius); y++)
+            //    for (int x = radius; x < (grid.width - radius); x++)
+            //    {
+            //        if (canPlace[x, y])
+            //        {
+            //            x += radius;
+            //            Enemy copy = prefab.Copy();
+            //            copy.position = new Vector2(x, y);
+            //            grid.tiles[x, y].currentObject = copy;
+            //            count--;
+
+            //            for (int j = 0; j <= radius; j++)
+            //            {
+            //                for (int i = 0; i <= radius; i++)
+            //                {
+            //                    if (inRadius[i, j])
+            //                    {
+            //                        canPlace[x + i, y + j] = false;
+            //                        canPlace[x + i, y - j] = false;
+            //                        canPlace[x - i, y + j] = false;
+            //                        canPlace[x - i, y - j] = false;
+            //                    }
+            //                }
+            //            }
+
+            //            if (count <= 0) return;
+            //        }
+            //    }
+
+            Random random = new Random();
+            for (int q = 0; q < count; q++)
+            {
+                while (true)
                 {
+                    int x = random.Next(radius, grid.width - radius);
+                    int y = random.Next(radius, grid.height - radius);
+
                     if (canPlace[x, y])
                     {
-                        x += radius;
                         Enemy copy = prefab.Copy();
                         copy.position = new Vector2(x, y);
                         grid.tiles[x, y].currentObject = copy;
-                        count--;
 
                         for (int j = 0; j <= radius; j++)
                         {
@@ -180,9 +244,10 @@ namespace SpaceBattle2128
                             }
                         }
 
-                        if (count <= 0) return;
+                        break;
                     }
                 }
+            }
         }
 
         public static void GenerateSaveZone(Grid grid, Vector2 savezonePosition)

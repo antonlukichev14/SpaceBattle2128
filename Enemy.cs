@@ -38,6 +38,7 @@ namespace SpaceBattle2128
             }
             return false;
         }
+        public Enemy() { }
         public Enemy(int x, int y)
         {
             position = new Vector2(x, y);
@@ -106,9 +107,14 @@ namespace SpaceBattle2128
             }
             MoveTo(minPos);
         }
+        public Rook()
+        {
+            renderID = 2;
+            tag = "EnemyRook";
+        }
         public Rook(int x, int y) : base(x, y)
         {
-            // renderID = ;
+            renderID = 2;
             tag = "EnemyRook";
         }
 
