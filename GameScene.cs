@@ -13,13 +13,12 @@ namespace SpaceBattle2128
         public Vector2 exitZonePosition = new Vector2(); //Для статистики
 
         public Player player;
-        public Spawner spawner;
 
         public int seed;
 
         public bool playerInSaveZone; //Для того, чтобы не обновлять врагов, когда игрок в savezone
 
-        public override void Start()
+        protected override void Start()
         {
             if (Properties.seed == 0)
             {
@@ -34,9 +33,11 @@ namespace SpaceBattle2128
             GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
             GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
 
-            //Другие функции создания локации
+            //Необязательные функции:
 
-            base.Start();
+            GameSceneGenerator.GenerateGameObjects(grid, new King(0, 0), 100);
+
+            //Другие функции создания локации
         }
 
         protected override void Update()

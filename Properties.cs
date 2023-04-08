@@ -4,9 +4,9 @@
     static class Properties
     {
         public static int updateRadius = 30;
-        public static Vector2 defaultGameSceneSize = new Vector2(30, 30);
+        public static Vector2 defaultGameSceneSize = new Vector2(512, 512);
         public static Vector2 renderRadius = new Vector2(20, 10);
-        public static bool developmentRender = false;
+        public static bool developmentRender = false; //Устарело
 
         public static Vector2 saveZoneSize = new Vector2(5, 5);
         public static string saveZoneTag = "SaveZone";
