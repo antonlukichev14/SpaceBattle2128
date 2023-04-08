@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Transactions;
-
 namespace SpaceBattle2128
 {
     class Enemy : Actor
@@ -81,7 +75,7 @@ namespace SpaceBattle2128
                 MoveTo(minDistance);
             }
         }
-        public King(int x, int y, int _rangeOfDetection) : base(x,y,_rangeOfDetection)
+        public King(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 11;
             tag = "EnemyKing";
@@ -126,12 +120,12 @@ namespace SpaceBattle2128
         }
         public Rook()
         {
-            renderID = 2;
+            renderID = 5;
             tag = "EnemyRook";
         }
         public Rook(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
-            renderID = 2;
+            renderID = 5;
             tag = "EnemyRook";
         }
 
@@ -264,7 +258,7 @@ namespace SpaceBattle2128
         }
 
     }
-   
-    
+
+
 
 }

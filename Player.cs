@@ -24,6 +24,19 @@ namespace SpaceBattle2128
                 case ConsoleKey.D:
                     Move(new Vector2(1, 0));
                     break;
+                case ConsoleKey.Q:
+                    Move(new Vector2(-1, 1));
+                    break;
+                case ConsoleKey.C:
+                    Move(new Vector2(1, -1));
+                    break;
+                case ConsoleKey.E:
+                    Move(new Vector2(1, 1));
+                    break;
+                case ConsoleKey.Z:
+                    Move(new Vector2(-1, -1));
+                    break;
+
             }
 
             if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject?.tag == "SaveZone")

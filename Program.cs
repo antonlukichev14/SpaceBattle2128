@@ -13,6 +13,7 @@ namespace SpaceBattle2128
             Console.CursorVisible = false;
             currentScene = startScene;
             currentScene.StartScene();
+
         }
 
         //Меняет сцену
