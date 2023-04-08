@@ -19,5 +19,6 @@
         public static byte exitZoneRenderIDFloor = 2; //Хз какое...
 
         public static int seed = 0; //0 - random value
+        public static int minSaveExitZoneDistance = 300;
     }
 }

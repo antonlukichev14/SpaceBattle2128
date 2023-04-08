@@ -49,23 +49,29 @@ namespace SpaceBattle2128
 
     class King : Enemy
     {
+        public override King Copy() { return new King(0, 0, rangeOfDetection); }
+
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
-                Vector2 minDistance = position;
+                Vector2 minDistance = new Vector2(position);
 
                 for (int x = -1; x < 2; x++)
                 {
                     for (int y = -1; y < 2; y++)
                     {
-                        Vector2 possible = position;
+                        Vector2 possible = new Vector2(position);
                         if (TryExecute(new Vector2(x, y)))
                         {
-                            possible.x = possible.x + x;
-                            possible.y = possible.y + y;
-                            if (Vector2.Distance(possible, playerPos) < Vector2.Distance(minDistance, playerPos))// тут должно быть местоположение игрока
+                            possible.x += x;
+                            possible.y += y;
+
+                            float dis1 = Vector2.DistanceFloat(possible, playerPos);
+                            float dis2 = Vector2.DistanceFloat(minDistance, playerPos);
+
+                            if (dis1 < dis2)// тут должно быть местоположение игрока
                             {
                                 minDistance = possible;
                             }
@@ -83,6 +89,8 @@ namespace SpaceBattle2128
     }
     class Rook : Enemy
     {
+        public override Rook Copy() { return new Rook(0, 0, rangeOfDetection); }
+
         Vector2[] possiblePositions = new Vector2[4]
         {new Vector2(0, 1),
          new Vector2(-1, 0), new Vector2(1, 0),
@@ -91,9 +99,9 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
-                Vector2 minPos = position;
+                Vector2 minPos = new Vector2(position);
                 int minValue = Vector2.Distance(position, playerPos);
                 foreach (Vector2 nope in possiblePositions)
                 {
@@ -130,6 +138,8 @@ namespace SpaceBattle2128
     }
     class Elephant : Enemy
     {
+        public override Elephant Copy() { return new Elephant(0, 0, rangeOfDetection); }
+
         Vector2[] possiblePositions = new Vector2[4]
         {new Vector2(1, 1),new Vector2(-1, 1),
         new Vector2(-1, -1), new Vector2(1, -1)};
@@ -137,7 +147,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
                 Vector2 minPos = position;
                 int minValue = Vector2.Distance(position, playerPos);
@@ -173,6 +183,8 @@ namespace SpaceBattle2128
     }
     class Horse : Enemy
     {
+        public override Horse Copy() { return new Horse(0, 0, rangeOfDetection); }
+
         Vector2[] possiblePositions = new Vector2[8]
         {new Vector2(2, 1), new Vector2(2, -1),
         new Vector2(2, 1), new Vector2(2, 1),
@@ -182,7 +194,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
                 Vector2 minPos = position;
                 int minValue = Vector2.Distance(position, playerPos);
@@ -210,6 +222,8 @@ namespace SpaceBattle2128
     }
     class Queen : Enemy
     {
+        public override Queen Copy() { return new Queen(0, 0, rangeOfDetection); }
+
         Vector2[] possiblePositions = new Vector2[8]
         {new Vector2(1, 1), new Vector2(0, 1), new Vector2(-1, 1),
          new Vector2(-1, 0), new Vector2(1, 0),
@@ -218,7 +232,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
                 Vector2 minPos = position;
                 int minValue = Vector2.Distance(position, playerPos);

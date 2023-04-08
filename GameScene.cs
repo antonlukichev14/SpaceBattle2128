@@ -20,24 +20,39 @@ namespace SpaceBattle2128
 
         protected override void Start()
         {
-            if (Properties.seed == 0)
-            {
-                Random random = new Random();
-                seed = random.Next(int.MinValue, int.MaxValue);
-            }
-            else seed = Properties.seed;
-
             currentGameScene = this;
 
-            grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
-            GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
-            GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
+            GenerateBase();
 
             //Необязательные функции:
 
-            GameSceneGenerator.GenerateGameObjects(grid, new King(0, 0), 100);
+            GameSceneGenerator.GenerateEnemies(grid, new King(0, 0, 10), 100);
 
             //Другие функции создания локации
+        }
+
+        protected void GenerateBase()
+        {
+            if(Properties.seed != 0)
+            {
+                seed = Properties.seed;
+
+                grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+                GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
+                GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
+
+                return;
+            }
+
+            do
+            {
+                Random random = new Random();
+                seed = random.Next(int.MinValue, int.MaxValue);
+
+                grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+                GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
+                GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
+            } while (Vector2.Distance(player.position, exitZonePosition) < Properties.minSaveExitZoneDistance);
         }
 
         protected override void Update()

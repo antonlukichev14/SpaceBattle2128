@@ -132,7 +132,7 @@ namespace SpaceBattle2128
             }
         }
 
-        public static void GenerateGameObjects(Grid grid, Enemy prefab, int count)
+        public static void GenerateEnemies(Grid grid, Enemy prefab, int count)
         {
             if (count <= 0) return;
 

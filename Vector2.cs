@@ -30,6 +30,14 @@ namespace SpaceBattle2128
             return (int)distance;
         }
 
+        public static float DistanceFloat(Vector2 first, Vector2 second)
+        {
+            //Возвращает дистанцию между двумя векторами.
+            //AB = √(xb - xa)2 + (yb - ya)2
+            double distance = Math.Sqrt(Math.Pow((second.x - first.x), 2) + Math.Pow((second.y - first.y), 2));
+            return (float)distance;
+        }
+
         public static Vector2 operator +(Vector2 a, Vector2 b)
         {
             return new Vector2(a.x + b.x, a.y + b.y);

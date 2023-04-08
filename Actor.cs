@@ -29,6 +29,8 @@
                     GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;
                     GameScene.currentGameScene.grid.tiles[direction.x, direction.y].currentObject = this;
 
+                    position = direction;
+
                 }
             }
         }
