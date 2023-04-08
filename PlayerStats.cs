@@ -21,8 +21,7 @@ namespace SpaceBattle2128
         {
             get
             {
-                //Доделать
-                return 0;
+                return Vector2.Distance(GameScene.currentGameScene.exitZonePosition, GameScene.currentGameScene.player.position);
             }
         }
         public static int livesCount;

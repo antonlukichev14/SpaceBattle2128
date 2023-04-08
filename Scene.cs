@@ -9,10 +9,13 @@ namespace SpaceBattle2128
 {
     abstract class Scene
     {
-        public virtual void Start()
+        public virtual void StartScene()
         {
+            Start();
             SceneLoop();
         }
+
+        protected abstract void Start();
 
         protected void SceneLoop()
         {
