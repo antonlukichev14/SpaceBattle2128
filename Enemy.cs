@@ -8,6 +8,7 @@ namespace SpaceBattle2128
 {
     class Enemy : Actor
     {
+        public int rangeOfDetection;
         protected Enemy(Enemy enemy) : base(enemy) { }
 
         public override Enemy Copy() { return new Enemy(this); }
@@ -39,8 +40,9 @@ namespace SpaceBattle2128
             return false;
         }
         public Enemy() { }
-        public Enemy(int x, int y)
+        public Enemy(int x, int y, int _rangeOfDetection)
         {
+            rangeOfDetection = _rangeOfDetection;
             position = new Vector2(x, y);
         }
     }
@@ -49,27 +51,31 @@ namespace SpaceBattle2128
     {
         public override void Update()
         {
-            Vector2 minDistance = position ;
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            for (int x = -1; x < 2; x++)
+            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
             {
-                for (int y = -1; y < 2; y++)
+                Vector2 minDistance = position;
+
+                for (int x = -1; x < 2; x++)
                 {
-                    Vector2 possible = position;
-                    if (TryExecute(new Vector2(x, y)))
+                    for (int y = -1; y < 2; y++)
                     {
-                        possible.x = possible.x + x;
-                        possible.y = possible.y + y;
-                        if (Vector2.Distance(possible, playerPos) < Vector2.Distance(minDistance, playerPos))// тут должно быть местоположение игрока
+                        Vector2 possible = position;
+                        if (TryExecute(new Vector2(x, y)))
                         {
-                            minDistance = possible;
+                            possible.x = possible.x + x;
+                            possible.y = possible.y + y;
+                            if (Vector2.Distance(possible, playerPos) < Vector2.Distance(minDistance, playerPos))// тут должно быть местоположение игрока
+                            {
+                                minDistance = possible;
+                            }
                         }
                     }
                 }
+                MoveTo(minDistance);
             }
-            MoveTo(minDistance);
         }
-        public King(int x, int y) : base(x,y)
+        public King(int x, int y, int _rangeOfDetection) : base(x,y,_rangeOfDetection)
         {
             renderID = 11;
             tag = "EnemyKing";
@@ -85,34 +91,37 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            Vector2 minPos = position;
-            int minValue = Vector2.Distance(position, playerPos);
-            foreach (Vector2 nope in possiblePositions)
+            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
             {
-                for (int k = 1; ; k++)
+                Vector2 minPos = position;
+                int minValue = Vector2.Distance(position, playerPos);
+                foreach (Vector2 nope in possiblePositions)
                 {
-                    Vector2 possiblePos = position + k * nope;
-                    if (TryExecute(possiblePos))
+                    for (int k = 1; ; k++)
                     {
-                        int possibleValue = Vector2.Distance(possiblePos, playerPos);
-                        if (possibleValue < minValue)
+                        Vector2 possiblePos = position + k * nope;
+                        if (TryExecute(possiblePos))
                         {
-                            minValue = possibleValue;
-                            minPos = possiblePos;
+                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                            if (possibleValue < minValue)
+                            {
+                                minValue = possibleValue;
+                                minPos = possiblePos;
+                            }
                         }
+                        else break;
                     }
-                    else break;
-                }
 
+                }
+                MoveTo(minPos);
             }
-            MoveTo(minPos);
         }
         public Rook()
         {
             renderID = 2;
             tag = "EnemyRook";
         }
-        public Rook(int x, int y) : base(x, y)
+        public Rook(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 2;
             tag = "EnemyRook";
@@ -128,30 +137,33 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            Vector2 minPos = position;
-            int minValue = Vector2.Distance(position, playerPos);
-            foreach (Vector2 nope in possiblePositions)
+            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
             {
-                for (int k = 1; ; k++)
+                Vector2 minPos = position;
+                int minValue = Vector2.Distance(position, playerPos);
+                foreach (Vector2 nope in possiblePositions)
                 {
-                    Vector2 possiblePos = position + k * nope;
-                    if (TryExecute(possiblePos))
+                    for (int k = 1; ; k++)
                     {
-                        int possibleValue = Vector2.Distance(possiblePos, playerPos);
-                        if (possibleValue < minValue)
+                        Vector2 possiblePos = position + k * nope;
+                        if (TryExecute(possiblePos))
                         {
-                            minValue = possibleValue;
-                            minPos = possiblePos;
+                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                            if (possibleValue < minValue)
+                            {
+                                minValue = possibleValue;
+                                minPos = possiblePos;
+                            }
                         }
+                        else break;
                     }
-                    else break;
-                }
 
+                }
+                MoveTo(minPos);
             }
-            MoveTo(minPos);
         }
 
-        public Elephant(int x, int y) : base(x, y)
+        public Elephant(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             // renderID = ;
             tag = "EnemyElephant";
@@ -170,24 +182,27 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            Vector2 minPos = position;
-            int minValue = Vector2.Distance(position, playerPos);
-            foreach (Vector2 nope in possiblePositions)
+            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
             {
-                Vector2 possiblePos = position + nope;
-                if (TryExecute(possiblePos))
+                Vector2 minPos = position;
+                int minValue = Vector2.Distance(position, playerPos);
+                foreach (Vector2 nope in possiblePositions)
                 {
-                    int possibleValue = Vector2.Distance(possiblePos, playerPos);
-                    if(possibleValue < minValue)
+                    Vector2 possiblePos = position + nope;
+                    if (TryExecute(possiblePos))
                     {
-                        minValue = possibleValue;
-                        minPos = possiblePos;
+                        int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                        if (possibleValue < minValue)
+                        {
+                            minValue = possibleValue;
+                            minPos = possiblePos;
+                        }
                     }
                 }
+                MoveTo(minPos);
             }
-            MoveTo(minPos);
         }
-        public Horse(int x, int y) : base(x,y)
+        public Horse(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             // renderID = ;
             tag = "EnemyHorse";
@@ -203,29 +218,32 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            Vector2 minPos = position;
-            int minValue = Vector2.Distance(position, playerPos);
-            foreach (Vector2 nope in possiblePositions)
+            if (Vector2.Distance(position, playerPos) == rangeOfDetection)
             {
-                for (int k = 1; ; k++)
+                Vector2 minPos = position;
+                int minValue = Vector2.Distance(position, playerPos);
+                foreach (Vector2 nope in possiblePositions)
                 {
-                    Vector2 possiblePos = position + k*nope;
-                    if (TryExecute(possiblePos))
+                    for (int k = 1; ; k++)
                     {
-                        int possibleValue = Vector2.Distance(possiblePos, playerPos);
-                        if (possibleValue < minValue)
+                        Vector2 possiblePos = position + k * nope;
+                        if (TryExecute(possiblePos))
                         {
-                            minValue = possibleValue;
-                            minPos = possiblePos;
+                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                            if (possibleValue < minValue)
+                            {
+                                minValue = possibleValue;
+                                minPos = possiblePos;
+                            }
                         }
+                        else break;
                     }
-                    else break;
+
                 }
-                
+                MoveTo(minPos);
             }
-            MoveTo(minPos);
         }
-        public Queen(int x, int y) : base(x, y)
+        public Queen(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             // renderID = ;
             tag = "EnemyQueen";
