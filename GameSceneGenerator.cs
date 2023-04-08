@@ -23,7 +23,7 @@ namespace SpaceBattle2128
 
             int radius = 5;
             int radius2 = radius * radius;
-            bool[,] inRadius = new bool[radius * 2 + 1, radius * 2 + 1];
+            bool[,] inRadius = new bool[radius + 1, radius + 1];
 
             inRadius[radius, radius] = true;
             for (int j = 0; j <= radius; j++)
@@ -31,11 +31,7 @@ namespace SpaceBattle2128
                 int j2 = j * j;
                 for (int i = 0; i <= radius; i++)
                 {
-                    bool bl = (i * i + j2 <= radius2);
-                    inRadius[radius + i, radius + j] = bl;
-                    inRadius[radius - i, radius + j] = bl;
-                    inRadius[radius + i, radius - j] = bl;
-                    inRadius[radius - i, radius - j] = bl;
+                    inRadius[i, j] = (i * i + j2 <= radius2);
                 }
             }
 
@@ -138,18 +134,14 @@ namespace SpaceBattle2128
 
             int radius = 5;
             int radius2 = radius * radius;
-            bool[,] inRadius = new bool[radius * 2 + 1, radius * 2 + 1];
+            bool[,] inRadius = new bool[radius + 1, radius + 1];
 
             for (int j = 0; j <= radius; j++)
             {
                 int j2 = j * j;
                 for (int i = 0; i <= radius; i++)
                 {
-                    bool bl = (i * i + j2 <= radius2);
-                    inRadius[radius + i, radius + j] = bl;
-                    inRadius[radius - i, radius + j] = bl;
-                    inRadius[radius + i, radius - j] = bl;
-                    inRadius[radius - i, radius - j] = bl;
+                    inRadius[i, j] = (i * i + j2 <= radius2);
                 }
             }
 
