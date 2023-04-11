@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SpaceBattle2128
+﻿namespace SpaceBattle2128
 {
     abstract class Scene
     {
@@ -19,8 +12,9 @@ namespace SpaceBattle2128
 
         protected void SceneLoop()
         {
-            while (true)
+            while (Properties.gameIsContinue) // пока игра идёт
             {
+
                 Update();
                 Render();
                 Input.SetKey();
