@@ -246,31 +246,7 @@ namespace SpaceBattle2128
 
         public override void Update()
         {
-            Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
-            {
-                Vector2 minPos = position;
-                int minValue = Vector2.Distance(position, playerPos);
-                foreach (Vector2 nope in possiblePositions)
-                {
-                    for (int k = 1; ; k++)
-                    {
-                        Vector2 possiblePos = position + k * nope;
-                        if (TryExecute(possiblePos))
-                        {
-                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
-                            if (possibleValue < minValue)
-                            {
-                                minValue = possibleValue;
-                                minPos = possiblePos;
-                            }
-                        }
-                        else break;
-                    }
-
-                }
-                MoveTo(minPos);
-            }
+            //Передеать. Читай дизайн документ!
         }
         public Queen(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
