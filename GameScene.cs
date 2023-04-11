@@ -26,7 +26,7 @@ namespace SpaceBattle2128
 
             //Необязательные функции:
 
-            GameSceneGenerator.GenerateEnemies(grid, new King(0, 0, 10), 100);
+            GameSceneGenerator.GenerateEnemies(grid, new Rook(0, 0, 15), 100);
 
             //Другие функции создания локации
         }
@@ -88,8 +88,7 @@ namespace SpaceBattle2128
 
         protected override void Render()
         {
-            if (!Properties.developmentRender) GameSceneRender.Render(currentGameScene);
-            else GameSceneRender.DevelopmentRender(currentGameScene);
+            GameSceneRender.Render(currentGameScene);
         }
     }
 }

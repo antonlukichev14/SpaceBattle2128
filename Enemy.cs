@@ -39,6 +39,21 @@ namespace SpaceBattle2128
             }
             return false;
         }
+
+        public bool TryExecuteTo(Vector2 _position)
+        {
+            //Проверяет, возможно ли вообще переместиться в эту точку
+            if (_position.x > 0 && _position.x < GameScene.currentGameScene.grid.width && _position.y > 0 && _position.y < GameScene.currentGameScene.grid.height)
+            {
+                if (GameScene.currentGameScene.grid.tiles[_position.x, _position.y].wall == false)
+                {
+                    return true;
+                }
+                else return false;
+            }
+            return false;
+        }
+
         public Enemy() { }
         public Enemy(int x, int y, int _rangeOfDetection)
         {
@@ -71,7 +86,7 @@ namespace SpaceBattle2128
                             float dis1 = Vector2.DistanceFloat(possible, playerPos);
                             float dis2 = Vector2.DistanceFloat(minDistance, playerPos);
 
-                            if (dis1 < dis2)// тут должно быть местоположение игрока
+                            if (dis1 < dis2)
                             {
                                 minDistance = possible;
                             }
@@ -87,14 +102,13 @@ namespace SpaceBattle2128
             tag = "EnemyKing";
         }
     }
+
+    //Посвящено Дуэлью Джонсану
     class Rook : Enemy
     {
         public override Rook Copy() { return new Rook(0, 0, rangeOfDetection); }
 
-        Vector2[] possiblePositions = new Vector2[4]
-        {new Vector2(0, 1),
-         new Vector2(-1, 0), new Vector2(1, 0),
-        new Vector2(0, -1)};
+        Vector2[] possiblePositions = new Vector2[4] {new Vector2(0, 1), new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1)};
 
         public override void Update()
         {
@@ -102,15 +116,16 @@ namespace SpaceBattle2128
             if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
                 Vector2 minPos = new Vector2(position);
-                int minValue = Vector2.Distance(position, playerPos);
+                float minValue = Vector2.DistanceFloat(position, playerPos);
+
                 foreach (Vector2 nope in possiblePositions)
                 {
                     for (int k = 1; ; k++)
                     {
-                        Vector2 possiblePos = position + k * nope;
-                        if (TryExecute(possiblePos))
+                        Vector2 possiblePos = new Vector2(position) + k * new Vector2(nope);
+                        if (TryExecuteTo(possiblePos))
                         {
-                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                            float possibleValue = Vector2.DistanceFloat(possiblePos, playerPos);
                             if (possibleValue < minValue)
                             {
                                 minValue = possibleValue;
@@ -119,23 +134,23 @@ namespace SpaceBattle2128
                         }
                         else break;
                     }
-
                 }
+
                 MoveTo(minPos);
             }
         }
         public Rook()
         {
-            renderID = 2;
+            renderID = 12;
             tag = "EnemyRook";
         }
         public Rook(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
-            renderID = 2;
+            renderID = 12;
             tag = "EnemyRook";
         }
-
     }
+
     class Elephant : Enemy
     {
         public override Elephant Copy() { return new Elephant(0, 0, rangeOfDetection); }
