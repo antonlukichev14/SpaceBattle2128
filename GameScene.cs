@@ -26,7 +26,7 @@ namespace SpaceBattle2128
 
             //Необязательные функции:
 
-            GameSceneGenerator.GenerateEnemies(grid, new Elephant(0, 0, 15), 100);
+            GameSceneGenerator.GenerateEnemies(grid, new Horse(0, 0, 15), 100);
 
             //Другие функции создания локации
         }

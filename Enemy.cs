@@ -161,10 +161,10 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
+            if (Vector2.DistanceFloat(position, playerPos) <= rangeOfDetection)
             {
                 Vector2 minPos = new Vector2(position);
-                int minValue = Vector2.Distance(position, playerPos);
+                float minValue = Vector2.DistanceFloat(position, playerPos);
 
                 foreach (Vector2 nope in possiblePositions)
                 {
@@ -174,7 +174,7 @@ namespace SpaceBattle2128
 
                         if (TryExecuteTo(possiblePos))
                         {
-                            int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                            float possibleValue = Vector2.DistanceFloat(possiblePos, playerPos);
                             if (possibleValue < minValue)
                             {
                                 minValue = possibleValue;
@@ -195,31 +195,29 @@ namespace SpaceBattle2128
             renderID = 13;
             tag = "EnemyElephant";
         }
-
     }
+
     class Horse : Enemy
     {
         public override Horse Copy() { return new Horse(0, 0, rangeOfDetection); }
 
-        Vector2[] possiblePositions = new Vector2[8]
-        {new Vector2(2, 1), new Vector2(2, -1),
-        new Vector2(2, 1), new Vector2(2, 1),
-        new Vector2(2, 1),new Vector2(2, 1),
-        new Vector2(2, 1),new Vector2(2, 1),};
+        Vector2[] possiblePositions = new Vector2[8] {new Vector2(2, 1), new Vector2(2, -1), new Vector2(-2, 1), new Vector2(-2, -1), new Vector2(1, 2),new Vector2(1, -2), new Vector2(-1, 2),new Vector2(-1, -2)};
 
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
+
             if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
-                Vector2 minPos = position;
-                int minValue = Vector2.Distance(position, playerPos);
+                Vector2 minPos = new Vector2(position);
+                float minValue = Vector2.DistanceFloat(position, playerPos);
                 foreach (Vector2 nope in possiblePositions)
                 {
-                    Vector2 possiblePos = position + nope;
-                    if (TryExecute(possiblePos))
+                    Vector2 possiblePos = new Vector2(position) + new Vector2(nope);
+
+                    if (TryExecuteTo(possiblePos))
                     {
-                        int possibleValue = Vector2.Distance(possiblePos, playerPos);
+                        float possibleValue = Vector2.DistanceFloat(possiblePos, playerPos);
                         if (possibleValue < minValue)
                         {
                             minValue = possibleValue;
@@ -236,6 +234,7 @@ namespace SpaceBattle2128
             tag = "EnemyHorse";
         }
     }
+
     class Queen : Enemy
     {
         public override Queen Copy() { return new Queen(0, 0, rangeOfDetection); }
