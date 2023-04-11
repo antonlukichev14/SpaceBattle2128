@@ -26,6 +26,7 @@ namespace SpaceBattle2128
             }
         }
         */
+
         public bool TryExecute(Vector2 direction)
         {
             //Проверяет, возможно ли вообще переместиться в эту точку
@@ -155,23 +156,23 @@ namespace SpaceBattle2128
     {
         public override Elephant Copy() { return new Elephant(0, 0, rangeOfDetection); }
 
-        Vector2[] possiblePositions = new Vector2[4]
-        {new Vector2(1, 1),new Vector2(-1, 1),
-        new Vector2(-1, -1), new Vector2(1, -1)};
+        Vector2[] possiblePositions = new Vector2[4] {new Vector2(1, 1), new Vector2(-1, 1), new Vector2(-1, -1), new Vector2(1, -1)};
 
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
             if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
             {
-                Vector2 minPos = position;
+                Vector2 minPos = new Vector2(position);
                 int minValue = Vector2.Distance(position, playerPos);
+
                 foreach (Vector2 nope in possiblePositions)
                 {
                     for (int k = 1; ; k++)
                     {
-                        Vector2 possiblePos = position + k * nope;
-                        if (TryExecute(possiblePos))
+                        Vector2 possiblePos = new Vector2(position) + k * new Vector2(nope);
+
+                        if (TryExecuteTo(possiblePos))
                         {
                             int possibleValue = Vector2.Distance(possiblePos, playerPos);
                             if (possibleValue < minValue)
@@ -184,15 +185,15 @@ namespace SpaceBattle2128
                     }
 
                 }
+
                 MoveTo(minPos);
             }
         }
 
         public Elephant(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
-            // renderID = ;
+            renderID = 13;
             tag = "EnemyElephant";
-
         }
 
     }
@@ -231,7 +232,7 @@ namespace SpaceBattle2128
         }
         public Horse(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
-            // renderID = ;
+            renderID = 14;
             tag = "EnemyHorse";
         }
     }
@@ -274,7 +275,7 @@ namespace SpaceBattle2128
         }
         public Queen(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
-            // renderID = ;
+            renderID = 15;
             tag = "EnemyQueen";
         }
 

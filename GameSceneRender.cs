@@ -76,7 +76,7 @@ namespace SpaceBattle2128
 
             Console.Write("\n");
             Console.WriteLine("Управление:");
-            Console.Write("WASD - Перемещение");
+            Console.Write("WAXD QEZC - Перемещение");
         }
     }
 }

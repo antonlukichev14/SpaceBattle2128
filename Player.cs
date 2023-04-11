@@ -13,7 +13,7 @@ namespace SpaceBattle2128
                     Move(new Vector2(0, 1));
                     break;
 
-                case ConsoleKey.S:
+                case ConsoleKey.X:
                     Move(new Vector2(0, -1));
                     break;
 
@@ -23,6 +23,23 @@ namespace SpaceBattle2128
 
                 case ConsoleKey.D:
                     Move(new Vector2(1, 0));
+                    break;
+
+                //Диагональное перемещение
+                case ConsoleKey.Q:
+                    Move(new Vector2(-1, 1));
+                    break;
+
+                case ConsoleKey.C:
+                    Move(new Vector2(1, -1));
+                    break;
+
+                case ConsoleKey.E:
+                    Move(new Vector2(1, 1));
+                    break;
+
+                case ConsoleKey.Z:
+                    Move(new Vector2(-1, -1));
                     break;
             }
 
