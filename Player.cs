@@ -17,6 +17,10 @@ namespace SpaceBattle2128
                     Move(new Vector2(0, -1));
                     break;
 
+                case ConsoleKey.S:
+                    Move(new Vector2(0, -1));
+                    break;
+
                 case ConsoleKey.A:
                     Move(new Vector2(-1, 0));
                     break;

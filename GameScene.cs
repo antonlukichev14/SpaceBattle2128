@@ -57,6 +57,7 @@ namespace SpaceBattle2128
 
         protected override void Update()
         {
+            if (Input.GetKey() == ConsoleKey.Escape) Program.ChangeScene(Program.menuScene);
             GameObjectsUpdate();
         }
 

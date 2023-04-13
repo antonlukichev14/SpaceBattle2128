@@ -6,8 +6,6 @@ namespace SpaceBattle2128
     {
         static public void Render(GameScene scene)
         {
-            Console.Clear();
-
             char[,] renderChar = new char[Properties.renderRadius.x, Properties.renderRadius.y];
             ConsoleColor[,] renderColor = new ConsoleColor[Properties.renderRadius.x, Properties.renderRadius.y];
 
@@ -23,30 +21,30 @@ namespace SpaceBattle2128
 
                     if (positionX >= 0 && positionX < scene.grid.width && positionY >= 0 && positionY < scene.grid.height)
                     {
-                        if (scene.grid.tiles[positionX, positionY].wall) { renderChar[x, y] = RenderList.Get(1); renderColor[x, y] = RenderList.GetColor(1); }
-                        else { renderChar[x, y] = RenderList.Get(0); renderColor[x, y] = RenderList.GetColor(0); }
+                        if (scene.grid.tiles[positionX, positionY].wall) { renderChar[x, y] = RenderList.GetChar(1); renderColor[x, y] = RenderList.GetColor(1); }
+                        else { renderChar[x, y] = RenderList.GetChar(0); renderColor[x, y] = RenderList.GetColor(0); }
 
                         if (scene.grid.tiles[positionX, positionY].currentFloorObject != null)
                         {
                             renderColor[x, y] = RenderList.GetColor(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentFloorObject.renderID);
-                            renderChar[x, y] = RenderList.Get(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentFloorObject.renderID);
+                            renderChar[x, y] = RenderList.GetChar(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentFloorObject.renderID);
                         }
 
                         if (scene.grid.tiles[positionX, positionY].currentObject != null)
                         {
                             renderColor[x, y] = RenderList.GetColor(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentObject.renderID);
-                            renderChar[x, y] = RenderList.Get(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentObject.renderID);
+                            renderChar[x, y] = RenderList.GetChar(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentObject.renderID);
                         }
 
                         if (scene.grid.tiles[positionX, positionY].currentEffectObject != null)
                         {
                             renderColor[x, y] = RenderList.GetColor(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentEffectObject.renderID);
-                            renderChar[x, y] = RenderList.Get(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentEffectObject.renderID);
+                            renderChar[x, y] = RenderList.GetChar(scene.grid.tiles[scene.player.position.x - centerX + x, scene.player.position.y - centerY + y].currentEffectObject.renderID);
                         }
                     }
                     else
                     {
-                        renderChar[x, y] = RenderList.Get(0);
+                        renderChar[x, y] = RenderList.GetChar(0);
                     }
                 }
             }
@@ -76,7 +74,8 @@ namespace SpaceBattle2128
 
             Console.Write("\n");
             Console.WriteLine("Управление:");
-            Console.Write("WAXD QEZC - Перемещение");
+            Console.Write("WAXD QEZC - Перемещение, ");
+            Console.Write("ESC - вернуться в меню.");
         }
     }
 }

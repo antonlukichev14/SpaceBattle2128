@@ -1,24 +1,28 @@
 ﻿using System;
+using SpaceBattle2128.Scenes;
 
 namespace SpaceBattle2128
 {
-    class Program
+    static class Program
     {
-        static Scene startScene = new GameScene();
+        public static Scene menuScene = new MenuScene();
+        public static Scene changeSkinScene = new ChangeSkinScene();
+        public static Scene gameScene1 = new GameScene();
         public static Scene currentScene;
 
         //Запускает первую сцену
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            currentScene = startScene;
+            currentScene = menuScene;
             currentScene.StartScene();
         }
 
         //Меняет сцену
-        static void ChangeScene()
+        public static void ChangeScene(Scene newScene)
         {
-
+            currentScene = newScene;
+            currentScene.StartScene();
         }
     }
 }

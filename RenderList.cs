@@ -34,10 +34,16 @@ namespace SpaceBattle2128
             { 14, ConsoleColor.Red },
             { 15, ConsoleColor.DarkRed }
         };
-        public static char Get(byte renderID)
+        public static char GetChar(byte renderID)
         {
             return renderList[renderID];
         }
+
+        public static void SetChar(byte renderID, char newChar)
+        {
+            renderList[renderID] = newChar;
+        }
+
         public static ConsoleColor GetColor(byte colorID) { return colorList[colorID]; }
     }
 }

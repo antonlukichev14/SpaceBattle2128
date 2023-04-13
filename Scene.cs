@@ -21,9 +21,10 @@ namespace SpaceBattle2128
         {
             while (true)
             {
-                Update();
+                Console.Clear();
                 Render();
                 Input.SetKey();
+                Update();
             }
         }
 
