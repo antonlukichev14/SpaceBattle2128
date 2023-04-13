@@ -15,6 +15,11 @@ namespace SpaceBattle2128
             SceneLoop();
         }
 
+        public virtual void ContinueScene()
+        {
+            SceneLoop();
+        }
+
         protected abstract void Start();
 
         protected void SceneLoop()

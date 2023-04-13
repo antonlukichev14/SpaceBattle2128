@@ -11,6 +11,7 @@ namespace SpaceBattle2128
         public static Scene changeSkinScene = new ChangeSkinScene();
         public static Scene deathScene = new DeathScene();
         public static Scene winScene = new WinScene();
+        public static Scene shopScene = new ShopScene();
 
         //Game Scene
         public static int currentGameScene = 0;
@@ -30,6 +31,12 @@ namespace SpaceBattle2128
         {
             currentScene = newScene;
             currentScene.StartScene();
+        }
+
+        public static void ContinueScene(Scene newScene)
+        {
+            currentScene = newScene;
+            currentScene.ContinueScene();
         }
     }
 }

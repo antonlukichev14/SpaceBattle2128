@@ -71,6 +71,11 @@ namespace SpaceBattle2128
                 if (Program.currentGameScene >= Program.gameScenes.Length) Program.ChangeScene(Program.winScene);
                 else Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
             }
+
+            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == Tags.Shop)
+            {
+                Program.ChangeScene(Program.shopScene);
+            }
         }
 
         public Player(int x, int y)

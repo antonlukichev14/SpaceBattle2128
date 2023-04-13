@@ -350,9 +350,11 @@ namespace SpaceBattle2128
             //}
 
             int playerX = centreX + (width / 2); int playerY = centreY + (height / 2);
+            int shopX = centreX + (width / 2) + 1; int shopY = centreY + (height / 2) + 1;
 
             savezonePosition.x = centreX + (width / 2); savezonePosition.y = centreY + (height / 2);
 
+            grid.tiles[shopX, shopY].currentFloorObject = new FloorObject(4, Tags.Shop);
             Player player = new Player(playerX, playerY);
             Spawner spawner = new Spawner();
             grid.tiles[playerX, playerY].currentObject = player;
