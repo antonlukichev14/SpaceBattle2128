@@ -35,7 +35,7 @@ namespace SpaceBattle2128
         Wall,
         SaveZone,
         ExitZone,
-        Trap
-
+        Trap,
+        Shop
     }
 }

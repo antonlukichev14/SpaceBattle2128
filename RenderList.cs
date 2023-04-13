@@ -11,6 +11,7 @@ namespace SpaceBattle2128
             { 1, '#' }, //wall = true
             { 2, '*' }, //savezone floor id
             { 3, '^' }, //savezone wall id
+            { 4, '$' }, //Shop
 
             { 10, '\u0001' }, //Player
             { 11, '1' }, //EnemyKing
@@ -31,6 +32,7 @@ namespace SpaceBattle2128
             { 1, ConsoleColor.DarkGray }, //wall = true
             { 2, ConsoleColor.Green }, //savezone floor id
             { 3, ConsoleColor.Yellow }, //savezone wall id
+            { 4, ConsoleColor.Cyan },
 
             { 10, ConsoleColor.DarkGreen },
             { 11, ConsoleColor.Red },
