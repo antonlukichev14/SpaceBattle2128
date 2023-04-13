@@ -5,14 +5,14 @@
     {
         public static int updateRadius = 50;
         public static Vector2 defaultGameSceneSize = new Vector2(512, 512);
-        public static Vector2 renderRadius = new Vector2(30, 15); // в таком радиусе нет багов отрисовки
+        public static Vector2 renderRadius = new Vector2(40, 20);
 
         public static Vector2 saveZoneSize = new Vector2(5, 5);
         public static string saveZoneTag = "SaveZone";
         public static byte saveZoneRenderIDFloor = 2;
         public static byte saveZoneRenderIDWall = 3;
 
-        public static bool gameIsContinue = true; // если false, то возвращаемся в меню
+
         public static Vector2 exitZoneSize = new Vector2(3, 3);
         public static string exitZoneTag = "ExitZone";
         public static byte exitZoneRenderIDFloor = 2; //Хз какое...
