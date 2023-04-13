@@ -10,9 +10,7 @@ namespace SpaceBattle2128
         public Spawner()
         {
             renderID = 4;
-            tag = "Spawner";
-
-
+            tag = Tags.Spawner;
         }
 
         public void Spawn()

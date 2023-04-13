@@ -266,8 +266,8 @@ namespace SpaceBattle2128
             int centreX = 0;
             int centreY = 0;
 
-            FloorObject saveZoneFloor = new FloorObject(floorRenderID, tag);
-            Wall saveZoneWall = new Wall(wallRenderID, tag);
+            FloorObject saveZoneFloor = new FloorObject(floorRenderID, Tags.SaveZone);
+            Wall saveZoneWall = new Wall(wallRenderID, Tags.Wall);
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
@@ -417,7 +417,7 @@ namespace SpaceBattle2128
             int centreX = maxPos.x;
             int centreY = maxPos.y;
 
-            FloorObject exitZoneFloor = new FloorObject(renderID, tag);
+            FloorObject exitZoneFloor = new FloorObject(renderID, Tags.ExitZone);
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)

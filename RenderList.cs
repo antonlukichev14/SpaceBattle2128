@@ -17,7 +17,12 @@ namespace SpaceBattle2128
             { 12, 'R' }, //EnemyRock
             { 13, 'E' }, //EnemyElephant
             { 14, '2' }, //EnemyHorse
-            { 15, 'Q' } //EnemyQueen
+            { 15, 'Q' }, //EnemyQueen
+
+            {50, '#' }, //Trap
+
+            {70, '*' }, //YellowEffect
+            {71, '*' } //WhiteEffect
         };
 
         static Dictionary<byte, ConsoleColor> colorList = new Dictionary<byte, ConsoleColor>
@@ -32,7 +37,12 @@ namespace SpaceBattle2128
             { 12, ConsoleColor.DarkRed },
             { 13, ConsoleColor.DarkYellow },
             { 14, ConsoleColor.Red },
-            { 15, ConsoleColor.DarkRed }
+            { 15, ConsoleColor.DarkRed },
+
+            {50, ConsoleColor.Blue },
+
+            {70, ConsoleColor.Yellow },
+            {71, ConsoleColor.White }
         };
         public static char GetChar(byte renderID)
         {

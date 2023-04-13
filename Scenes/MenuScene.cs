@@ -15,6 +15,7 @@ namespace SpaceBattle2128.Scenes
         protected override void Render()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\n\n");
             Console.WriteLine(@"             _______..______      ___       ______  _______    .______        ___   .___________.___________. __       _______        ");
             Console.WriteLine(@"            /       ||   _  \    /   \     /      ||   ____|   |   _  \      /   \  |           |           ||  |     |   ____|       ");
             Console.WriteLine(@"           |   (----`|  |_)  |  /  ^  \   |  ,----'|  |__      |  |_)  |    /  ^  \ `---|  |----`---|  |----`|  |     |  |__          ");

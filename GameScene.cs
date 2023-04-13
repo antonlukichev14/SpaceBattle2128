@@ -27,6 +27,7 @@ namespace SpaceBattle2128
             //Необязательные функции:
 
             GameSceneGenerator.GenerateEnemies(grid, new Horse(0, 0, 15), 100);
+            GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(50, Tags.Trap), 500);
 
             //Другие функции создания локации
         }
@@ -73,9 +74,13 @@ namespace SpaceBattle2128
                 {
                     if ((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
                     {
-                        if (grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != "Player")
+                        if (grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != Tags.Player)
                         {
                             gameobjects.Add(grid.tiles[x, y].currentObject);
+                        }
+                        if(grid.tiles[x, y].currentEffectObject != null)
+                        {
+                            gameobjects.Add(grid.tiles[x, y].currentEffectObject);
                         }
                     }
                 }

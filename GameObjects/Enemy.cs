@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Transactions;
+using SpaceBattle2128.GameObjects;
 
 namespace SpaceBattle2128
 {
@@ -55,6 +56,22 @@ namespace SpaceBattle2128
             return false;
         }
 
+        public void EnemyMoveTo(Vector2 minPos)
+        {
+            if (minPos.x == GameScene.currentGameScene.player.position.x && minPos.y == GameScene.currentGameScene.player.position.y) 
+                GameScene.currentGameScene.PlayerDeath();
+
+            if (GameScene.currentGameScene.grid.tiles[minPos.x, minPos.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[minPos.x, minPos.y].currentFloorObject.tag == Tags.Trap)
+            {
+                GameScene.currentGameScene.grid.tiles[minPos.x, minPos.y].currentEffectObject = new WhiteEffect(minPos.x, minPos.y, 1);
+                GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;
+                PlayerStats.enemyKills++;
+                return;
+            }
+
+            MoveTo(minPos);
+        }
+
         public Enemy() { }
         public Enemy(int x, int y, int _rangeOfDetection)
         {
@@ -95,15 +112,13 @@ namespace SpaceBattle2128
                     }
                 }
 
-                if (minDistance == playerPos) GameScene.currentGameScene.PlayerDeath();
-
-                MoveTo(minDistance);
+                EnemyMoveTo(minDistance);
             }
         }
         public King(int x, int y, int _rangeOfDetection) : base(x,y,_rangeOfDetection)
         {
             renderID = 11;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
     }
 
@@ -140,20 +155,18 @@ namespace SpaceBattle2128
                     }
                 }
 
-                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
-
-                MoveTo(minPos);
+                EnemyMoveTo(minPos);
             }
         }
         public Rook()
         {
             renderID = 12;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
         public Rook(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 12;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
     }
 
@@ -191,16 +204,14 @@ namespace SpaceBattle2128
 
                 }
 
-                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
-
-                MoveTo(minPos);
+                EnemyMoveTo(minPos);
             }
         }
 
         public Elephant(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 13;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
     }
 
@@ -233,15 +244,13 @@ namespace SpaceBattle2128
                     }
                 }
 
-                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
-
-                MoveTo(minPos);
+                EnemyMoveTo(minPos);
             }
         }
         public Horse(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 14;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
     }
 
@@ -261,7 +270,7 @@ namespace SpaceBattle2128
         public Queen(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 15;
-            tag = "Enemy";
+            tag = Tags.Enemy;
         }
 
     }

@@ -50,12 +50,12 @@ namespace SpaceBattle2128
             Vector2 newPosition = position + move;
             if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject != null)
             {
-                if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject.tag == "Enemy") GameScene.currentGameScene.PlayerDeath();
+                if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject.tag == Tags.Enemy) GameScene.currentGameScene.PlayerDeath();
             }
 
             Move(move);
 
-            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject?.tag == "SaveZone")
+            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == Tags.SaveZone )
             {
                 GameScene.currentGameScene.playerInSaveZone = true;
             }
@@ -68,7 +68,7 @@ namespace SpaceBattle2128
         public Player(int x, int y)
         {
             renderID = 10;
-            tag = "Player";
+            tag = Tags.Player;
 
             position = new Vector2(x, y);
         }

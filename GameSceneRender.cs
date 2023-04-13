@@ -21,7 +21,8 @@ namespace SpaceBattle2128
 
                     if (positionX >= 0 && positionX < scene.grid.width && positionY >= 0 && positionY < scene.grid.height)
                     {
-                        if (scene.grid.tiles[positionX, positionY].wall) { renderChar[x, y] = RenderList.GetChar(1); renderColor[x, y] = RenderList.GetColor(1); }
+                        if (scene.grid.tiles[positionX, positionY].wall) 
+                        { renderChar[x, y] = RenderList.GetChar(1); renderColor[x, y] = RenderList.GetColor(1); }
                         else { renderChar[x, y] = RenderList.GetChar(0); renderColor[x, y] = RenderList.GetColor(0); }
 
                         if (scene.grid.tiles[positionX, positionY].currentFloorObject != null)

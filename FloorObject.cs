@@ -9,9 +9,9 @@ namespace SpaceBattle2128
     class FloorObject
     {
         public byte renderID;
-        public string tag;
+        public Tags tag;
 
-        public FloorObject(byte renderID, string tag)
+        public FloorObject(byte renderID, Tags tag)
         {
             this.renderID = renderID; this.tag = tag;
         }

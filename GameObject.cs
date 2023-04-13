@@ -9,7 +9,9 @@ namespace SpaceBattle2128
     public class GameObject
     {
         public byte renderID;
-        public string tag;
+        public Tags tag;
+
+        public Vector2 position;
 
         public GameObject() { }
 
@@ -22,5 +24,18 @@ namespace SpaceBattle2128
         virtual public GameObject Copy() { return new GameObject(this); }
 
         public virtual void Update() { }
+    }
+
+    public enum Tags
+    {
+        None,
+        Player,
+        Enemy,
+        Spawner,
+        Wall,
+        SaveZone,
+        ExitZone,
+        Trap
+
     }
 }
