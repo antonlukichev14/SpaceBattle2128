@@ -13,10 +13,6 @@ namespace SpaceBattle2128
                     move = (new Vector2(0, 1));
                     break;
 
-                case ConsoleKey.X:
-                    move = (new Vector2(0, -1));
-                    break;
-
                 case ConsoleKey.S:
                     move = (new Vector2(0, -1));
                     break;
@@ -55,7 +51,7 @@ namespace SpaceBattle2128
 
             Move(move);
 
-            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == Tags.SaveZone )
+            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == Tags.SaveZone)
             {
                 GameScene.currentGameScene.playerInSaveZone = true;
             }

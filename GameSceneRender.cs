@@ -21,7 +21,7 @@ namespace SpaceBattle2128
 
                     if (positionX >= 0 && positionX < scene.grid.width && positionY >= 0 && positionY < scene.grid.height)
                     {
-                        if (scene.grid.tiles[positionX, positionY].wall) 
+                        if (scene.grid.tiles[positionX, positionY].wall)
                         { renderChar[x, y] = RenderList.GetChar(1); renderColor[x, y] = RenderList.GetColor(1); }
                         else { renderChar[x, y] = RenderList.GetChar(0); renderColor[x, y] = RenderList.GetColor(0); }
 
@@ -75,7 +75,7 @@ namespace SpaceBattle2128
 
             Console.Write("\n");
             Console.WriteLine("Управление:");
-            Console.Write("WAXD QEZC - Перемещение, ");
+            Console.Write("WASD QEZC - Перемещение, ");
             Console.Write("ESC - вернуться в меню.");
         }
     }
