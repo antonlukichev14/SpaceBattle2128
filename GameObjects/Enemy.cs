@@ -94,13 +94,16 @@ namespace SpaceBattle2128
                         }
                     }
                 }
+
+                if (minDistance == playerPos) GameScene.currentGameScene.PlayerDeath();
+
                 MoveTo(minDistance);
             }
         }
         public King(int x, int y, int _rangeOfDetection) : base(x,y,_rangeOfDetection)
         {
             renderID = 11;
-            tag = "EnemyKing";
+            tag = "Enemy";
         }
     }
 
@@ -137,18 +140,20 @@ namespace SpaceBattle2128
                     }
                 }
 
+                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
+
                 MoveTo(minPos);
             }
         }
         public Rook()
         {
             renderID = 12;
-            tag = "EnemyRook";
+            tag = "Enemy";
         }
         public Rook(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 12;
-            tag = "EnemyRook";
+            tag = "Enemy";
         }
     }
 
@@ -186,6 +191,8 @@ namespace SpaceBattle2128
 
                 }
 
+                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
+
                 MoveTo(minPos);
             }
         }
@@ -193,7 +200,7 @@ namespace SpaceBattle2128
         public Elephant(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 13;
-            tag = "EnemyElephant";
+            tag = "Enemy";
         }
     }
 
@@ -225,13 +232,16 @@ namespace SpaceBattle2128
                         }
                     }
                 }
+
+                if (minPos == playerPos) GameScene.currentGameScene.PlayerDeath();
+
                 MoveTo(minPos);
             }
         }
         public Horse(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 14;
-            tag = "EnemyHorse";
+            tag = "Enemy";
         }
     }
 
@@ -251,7 +261,7 @@ namespace SpaceBattle2128
         public Queen(int x, int y, int _rangeOfDetection) : base(x, y, _rangeOfDetection)
         {
             renderID = 15;
-            tag = "EnemyQueen";
+            tag = "Enemy";
         }
 
     }

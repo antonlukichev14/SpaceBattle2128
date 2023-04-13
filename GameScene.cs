@@ -91,5 +91,10 @@ namespace SpaceBattle2128
         {
             GameSceneRender.Render(currentGameScene);
         }
+
+        public void PlayerDeath()
+        {
+            Program.ChangeScene(Program.deathScene);
+        }
     }
 }

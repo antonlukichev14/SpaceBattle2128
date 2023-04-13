@@ -8,9 +8,9 @@ namespace SpaceBattle2128.Scenes
 {
     class MenuScene : Scene
     {
-        string buttomstartGame = "  1.Начать игру(зажмите)";
+        string buttomstartGame = "  1.Начать игру";
         string buttomChangePlayer = "          2.Изменить персонажа";
-        string buttomExitGame = "            3.Выйти из игры";
+        string buttomExitGame = "          3.Выйти из игры";
 
         protected override void Render()
         {
@@ -47,6 +47,7 @@ namespace SpaceBattle2128.Scenes
             switch (Input.GetKey())
             {
                 case ConsoleKey.D1:
+                    PlayerStats.livesCount = 3;
                     Program.ChangeScene(Program.gameScene1);
                     break;
                 case ConsoleKey.D2:

@@ -6,46 +6,54 @@ namespace SpaceBattle2128
     {
         public override void Update()
         {
-
+            Vector2 move = new Vector2(0, 0);
             switch (Input.GetKey())
             {
                 case ConsoleKey.W:
-                    Move(new Vector2(0, 1));
+                    move = (new Vector2(0, 1));
                     break;
 
                 case ConsoleKey.X:
-                    Move(new Vector2(0, -1));
+                    move = (new Vector2(0, -1));
                     break;
 
                 case ConsoleKey.S:
-                    Move(new Vector2(0, -1));
+                    move = (new Vector2(0, -1));
                     break;
 
                 case ConsoleKey.A:
-                    Move(new Vector2(-1, 0));
+                    move = (new Vector2(-1, 0));
                     break;
 
                 case ConsoleKey.D:
-                    Move(new Vector2(1, 0));
+                    move = (new Vector2(1, 0));
                     break;
 
                 //Диагональное перемещение
                 case ConsoleKey.Q:
-                    Move(new Vector2(-1, 1));
+                    move = (new Vector2(-1, 1));
                     break;
 
                 case ConsoleKey.C:
-                    Move(new Vector2(1, -1));
+                    move = (new Vector2(1, -1));
                     break;
 
                 case ConsoleKey.E:
-                    Move(new Vector2(1, 1));
+                    move = (new Vector2(1, 1));
                     break;
 
                 case ConsoleKey.Z:
-                    Move(new Vector2(-1, -1));
+                    move = (new Vector2(-1, -1));
                     break;
             }
+
+            Vector2 newPosition = position + move;
+            if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject != null)
+            {
+                if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject.tag == "Enemy") GameScene.currentGameScene.PlayerDeath();
+            }
+
+            Move(move);
 
             if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject?.tag == "SaveZone")
             {
