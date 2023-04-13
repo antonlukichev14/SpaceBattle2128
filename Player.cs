@@ -48,7 +48,7 @@ namespace SpaceBattle2128
             }
 
             Vector2 newPosition = position + move;
-            if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject != null)
+            if (newPosition.x > 0 && newPosition.x < GameScene.currentGameScene.grid.width && newPosition.y > 0 && newPosition.y < GameScene.currentGameScene.grid.height && GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject != null)
             {
                 if (GameScene.currentGameScene.grid.tiles[newPosition.x, newPosition.y].currentObject.tag == Tags.Enemy) GameScene.currentGameScene.PlayerDeath();
             }
