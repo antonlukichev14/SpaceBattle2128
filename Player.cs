@@ -63,6 +63,14 @@ namespace SpaceBattle2128
             {
                 GameScene.currentGameScene.playerInSaveZone = false;
             }
+
+            if (GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject != null && GameScene.currentGameScene.grid.tiles[position.x, position.y].currentFloorObject.tag == Tags.ExitZone)
+            {
+                Program.currentGameScene++;
+
+                if (Program.currentGameScene >= Program.gameScenes.Length) Program.ChangeScene(Program.winScene);
+                else Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
+            }
         }
 
         public Player(int x, int y)

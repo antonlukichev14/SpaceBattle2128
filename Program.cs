@@ -10,9 +10,11 @@ namespace SpaceBattle2128
         public static Scene menuScene = new MenuScene();
         public static Scene changeSkinScene = new ChangeSkinScene();
         public static Scene deathScene = new DeathScene();
+        public static Scene winScene = new WinScene();
 
         //Game Scene
-        public static Scene gameScene1 = new GameScene1(new Vector2(128, 128), 100);
+        public static int currentGameScene = 0;
+        public static Scene[] gameScenes = { new GameScene1(new Vector2(128, 128), 100) };
         public static Scene currentScene;
 
         //Запускает первую сцену

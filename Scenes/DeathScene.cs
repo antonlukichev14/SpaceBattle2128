@@ -42,7 +42,7 @@ namespace SpaceBattle2128.Scenes
         {
             if(PlayerStats.livesCount > 0)
             {
-                Program.ChangeScene(Program.gameScene1);
+                Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
             }
             else
             {

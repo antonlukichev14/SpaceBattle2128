@@ -49,7 +49,8 @@ namespace SpaceBattle2128.Scenes
             {
                 case ConsoleKey.D1:
                     PlayerStats.livesCount = 3;
-                    Program.ChangeScene(Program.gameScene1);
+                    Program.currentGameScene = 0;
+                    Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
                     break;
                 case ConsoleKey.D2:
                     Program.ChangeScene(Program.changeSkinScene);
