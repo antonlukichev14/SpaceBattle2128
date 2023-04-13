@@ -1,5 +1,6 @@
 ﻿using System;
 using SpaceBattle2128.Scenes;
+using SpaceBattle2128.Scenes.GameScenes;
 
 namespace SpaceBattle2128
 {
@@ -11,7 +12,7 @@ namespace SpaceBattle2128
         public static Scene deathScene = new DeathScene();
 
         //Game Scene
-        public static Scene gameScene1 = new GameScene();
+        public static Scene gameScene1 = new GameScene1(new Vector2(128, 128), 100);
         public static Scene currentScene;
 
         //Запускает первую сцену

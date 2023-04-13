@@ -5,6 +5,9 @@ namespace SpaceBattle2128
 {
     class GameScene : Scene
     {
+        protected Vector2 size;
+        protected int minSaveExitZoneDistance;
+
         public Grid grid;
 
         public static GameScene currentGameScene;
@@ -23,13 +26,13 @@ namespace SpaceBattle2128
             currentGameScene = this;
 
             GenerateBase();
+            GenerateCustom();
+        }
 
-            //Необязательные функции:
-
-            GameSceneGenerator.GenerateEnemies(grid, new Horse(0, 0, 15), 100);
-            GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(50, Tags.Trap), 500);
-
-            //Другие функции создания локации
+        protected virtual void GenerateCustom()
+        {
+            //GameSceneGenerator.GenerateEnemies(grid, new Horse(0, 0, 15), 100);
+            //GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(50, Tags.Trap), 500);
         }
 
         protected void GenerateBase()
@@ -38,7 +41,7 @@ namespace SpaceBattle2128
             {
                 seed = Properties.seed;
 
-                grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+                grid = GameSceneGenerator.GenerateWalls(size.x, size.y);
                 GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
                 GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
 
@@ -50,10 +53,10 @@ namespace SpaceBattle2128
                 Random random = new Random();
                 seed = random.Next(int.MinValue, int.MaxValue);
 
-                grid = GameSceneGenerator.GenerateWalls(Properties.defaultGameSceneSize.x, Properties.defaultGameSceneSize.y);
+                grid = GameSceneGenerator.GenerateWalls(size.x, size.y);
                 GameSceneGenerator.GenerateSaveZone(grid, savezonePosition);
                 GameSceneGenerator.GenerateExitZone(grid, exitZonePosition);
-            } while (Vector2.Distance(player.position, exitZonePosition) < Properties.minSaveExitZoneDistance);
+            } while (Vector2.Distance(player.position, exitZonePosition) < minSaveExitZoneDistance);
         }
 
         protected override void Update()
@@ -100,6 +103,12 @@ namespace SpaceBattle2128
         public void PlayerDeath()
         {
             Program.ChangeScene(Program.deathScene);
+        }
+
+        public GameScene(Vector2 size, int minSaveExitZoneDistance)
+        {
+            this.size = size;
+            this.minSaveExitZoneDistance = minSaveExitZoneDistance;
         }
     }
 }

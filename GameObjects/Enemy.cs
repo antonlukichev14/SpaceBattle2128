@@ -87,7 +87,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection && !GameScene.currentGameScene.playerInSaveZone)
             {
                 Vector2 minDistance = new Vector2(position);
 
@@ -132,7 +132,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection && !GameScene.currentGameScene.playerInSaveZone)
             {
                 Vector2 minPos = new Vector2(position);
                 float minValue = Vector2.DistanceFloat(position, playerPos);
@@ -179,7 +179,7 @@ namespace SpaceBattle2128
         public override void Update()
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
-            if (Vector2.DistanceFloat(position, playerPos) <= rangeOfDetection)
+            if (Vector2.DistanceFloat(position, playerPos) <= rangeOfDetection && !GameScene.currentGameScene.playerInSaveZone)
             {
                 Vector2 minPos = new Vector2(position);
                 float minValue = Vector2.DistanceFloat(position, playerPos);
@@ -225,7 +225,7 @@ namespace SpaceBattle2128
         {
             Vector2 playerPos = GameScene.currentGameScene.player.position;
 
-            if (Vector2.Distance(position, playerPos) <= rangeOfDetection)
+            if (Vector2.Distance(position, playerPos) <= rangeOfDetection && !GameScene.currentGameScene.playerInSaveZone)
             {
                 Vector2 minPos = new Vector2(position);
                 float minValue = Vector2.DistanceFloat(position, playerPos);
