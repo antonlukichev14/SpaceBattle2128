@@ -13,6 +13,7 @@ namespace SpaceBattle2128.Scenes.GameScenes
             GameSceneGenerator.GenerateEnemies(grid, new King(0, 0, 15), 50);
             GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(50, Tags.Trap), 250);
             GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(60, Tags.Money), 100);
+            GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(61, Tags.Robot), 10);
         }
 
         public GameScene1(Vector2 size, int minSaveExitZoneDistance) : base(size, minSaveExitZoneDistance) { }

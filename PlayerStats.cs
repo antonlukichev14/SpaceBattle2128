@@ -34,7 +34,7 @@ namespace SpaceBattle2128
             new InventorySlot (null, "Ловушка многоразовая", 0, false), //Слот под многоразовую ловушка
             new InventorySlot (null, "Ловушка одноразовая х4", 0, false), //Слот под ловушку одноразовую х4
             new InventorySlot (null, "Ловушка многоразовая х4", 0, false), //Слот под ловушку многоразовую х4
-            new InventorySlot (new Teleport(), "Телепорт на базу", 0, true), //Слот под телепорт на базу
+            new InventorySlot (new Teleport(), "Телепорт на базу", 1, true), //Слот под телепорт на базу
             new InventorySlot (null, "Онлайн-магазин", 0, false) //Слот под онлайн магазин
         };
 
