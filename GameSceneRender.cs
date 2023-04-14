@@ -85,7 +85,7 @@ namespace SpaceBattle2128
                 }
             }
 
-            Console.Write("ESC - вернуться в меню.");
+            Console.Write("ESC - сохраниться и вернуться в меню.");
         }
     }
 }

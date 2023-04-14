@@ -8,9 +8,10 @@ namespace SpaceBattle2128.Scenes
 {
     class MenuScene : Scene
     {
-        string buttomstartGame = "  1.Начать игру";
-        string buttomChangePlayer = "          2.Изменить персонажа";
-        string buttomExitGame = "          3.Выйти из игры";
+        string buttomstartGame = "1.Новая игра";
+        string buttomcontinuegame = "2.Продолжить игру";
+        string buttomChangePlayer = "3.Изменить персонажа";
+        string buttomExitGame = "4.Выйти из игры";
 
         protected override void Render()
         {
@@ -32,10 +33,17 @@ namespace SpaceBattle2128.Scenes
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine($"\t\t\t\t\t\t{buttomstartGame}");
+
+            if (SaveSystem.CheckSave())
+            {
+                Console.WriteLine("\n\n");
+                Console.WriteLine($"\t\t\t\t\t\t{buttomcontinuegame}");
+            }
+
             Console.WriteLine("\n\n");
-            Console.WriteLine($"\t\t\t\t\t{buttomChangePlayer}");
+            Console.WriteLine($"\t\t\t\t\t\t{buttomChangePlayer}");
             Console.WriteLine("\n\n");
-            Console.WriteLine($"\t\t\t\t\t{buttomExitGame}");
+            Console.WriteLine($"\t\t\t\t\t\t{buttomExitGame}");
         }
 
         protected override void Start()
@@ -48,14 +56,18 @@ namespace SpaceBattle2128.Scenes
             switch (Input.GetKey())
             {
                 case ConsoleKey.D1:
-                    PlayerStats.livesCount = 3;
-                    Program.currentGameScene = 0;
+                    SaveSystem.NewGame();
                     Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
                     break;
                 case ConsoleKey.D2:
-                    Program.ChangeScene(Program.changeSkinScene);
+                    if (!SaveSystem.CheckSave()) return;
+                    SaveSystem.Load();
+                    Program.ChangeScene(Program.gameScenes[Program.currentGameScene]);
                     break;
                 case ConsoleKey.D3:
+                    Program.ChangeScene(Program.changeSkinScene);
+                    break;
+                case ConsoleKey.D4:
                     Environment.Exit(0);
                     break;
             }
