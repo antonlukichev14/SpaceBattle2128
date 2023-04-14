@@ -33,6 +33,7 @@ namespace SpaceBattle2128
         {
             //GameSceneGenerator.GenerateEnemies(grid, new Horse(0, 0, 15), 100);
             //GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(50, Tags.Trap), 500);
+            //GameSceneGenerator.GenerateFloorObjects(grid, new FloorObject(60, Tags.Money), 100);
         }
 
         protected void GenerateBase()
@@ -75,7 +76,7 @@ namespace SpaceBattle2128
             {
                 for (int y = player.position.y - Properties.updateRadius; y <= player.position.y + Properties.updateRadius; y++)
                 {
-                    if ((x > 0 && x < grid.width) && (y > 0 && y < grid.height))
+                    if ((x >= 0 && x < grid.width) && (y >= 0 && y < grid.height))
                     {
                         if (grid.tiles[x, y].currentObject != null && grid.tiles[x, y].currentObject.tag != Tags.Player)
                         {

@@ -70,12 +70,21 @@ namespace SpaceBattle2128
             Console.Write("\n");
 
             Console.WriteLine("Статистика:");
-            Console.WriteLine("Количество убитых врагов: {0}, Количество собранных ресурсов: {1}, Дистанция до безопасной зоны: {2}, Дистанция до выхода: {3}, Количество оставшихся роботов: {4}, Текущий уровень: {5}.", PlayerStats.enemyKills, PlayerStats.resourcesCount, PlayerStats.savezoneDistance, PlayerStats.exitzoneDistance, PlayerStats.livesCount, Program.currentGameScene + 1);
+            Console.WriteLine("Количество убитых врагов: {0}, Количество денег: {1}, Дистанция до безопасной зоны: {2}, Дистанция до выхода: {3}, Количество оставшихся роботов: {4}, Текущий уровень: {5}.", PlayerStats.enemyKills, PlayerStats.money, PlayerStats.savezoneDistance, PlayerStats.exitzoneDistance, PlayerStats.livesCount, Program.currentGameScene + 1);
             Console.WriteLine("Координаты робота: {0}, {1}.", scene.player.position.x, scene.player.position.y);
 
             Console.Write("\n");
             Console.WriteLine("Управление:");
             Console.Write("WAXD QEZC - Перемещение, ");
+
+            for(int i = 0; i < PlayerStats.inventory.Length; i++)
+            {
+                if(PlayerStats.inventory[i].enable && PlayerStats.inventory[i].count > 0)
+                {
+                    Console.Write("{0} - {1} (x{2}), ", i + 1, PlayerStats.inventory[i].itemName, PlayerStats.inventory[i].count);
+                }
+            }
+
             Console.Write("ESC - вернуться в меню.");
         }
     }

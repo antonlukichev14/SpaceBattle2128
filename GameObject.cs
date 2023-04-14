@@ -36,6 +36,8 @@ namespace SpaceBattle2128
         SaveZone,
         ExitZone,
         Trap,
-        Shop
+        Shop,
+        Money,
+        Robot
     }
 }

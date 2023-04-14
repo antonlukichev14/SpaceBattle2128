@@ -17,7 +17,7 @@ namespace SpaceBattle2128
             Grid grid = GameScene.currentGameScene.grid;
             Vector2 playerPos = GameScene.currentGameScene.player.position;
             GOGranate granate = new GOGranate(radius, playerPos);
-            grid.tiles[playerPos.x, playerPos.y].currentObject = granate;            
+            grid.tiles[playerPos.x, playerPos.y].currentEffectObject = granate;            
         }
     }
 

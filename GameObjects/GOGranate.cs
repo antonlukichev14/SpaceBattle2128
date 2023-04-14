@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpaceBattle2128.GameObjects;
 
 namespace SpaceBattle2128
 {
-    internal class GOGranate : GameObject
+    internal class GOGranate : EffectObject
     {
         int radius;
         int timer;
@@ -16,11 +17,13 @@ namespace SpaceBattle2128
         bool[,] bools;
 
         public GOGranate(int radius, Vector2 position) 
-        { 
-            this.radius = radius;
-            this.pos = position;
+        {
+            renderID = 80;
 
-            timer = radius + 1;             
+            this.radius = radius;
+            this.pos = new Vector2(position);
+
+            timer = radius + 2;             
 
             bools = new bool[2 * radius + 1, 2 * radius + 1];
             for(int y = 0; y <= radius; y++)
@@ -55,8 +58,23 @@ namespace SpaceBattle2128
 
                     Tile tile = grid.tiles[xPos, yPos];
 
-                    if (tile.wall) continue;
-                    if (tile.currentObject != null) /* tile.currentObject.Kill()*/;
+                    tile.wall = false;
+
+                    tile.currentEffectObject = new YellowEffect(xPos, yPos, 1);
+
+                    if (tile.currentObject != null && tile.currentObject.tag == Tags.Player)
+                    {
+                        GameScene.currentGameScene.PlayerDeath();
+                    }
+
+                    if (tile.currentObject != null && tile.currentObject.tag == Tags.Enemy)
+                    {
+                        Enemy enemy = tile.currentObject as Enemy;
+                        if (enemy != null) enemy.dead = true;
+                    }
+
+                    tile.currentObject = null;
+                    tile.currentFloorObject = null;
                 }
             }
         }

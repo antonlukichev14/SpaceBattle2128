@@ -9,6 +9,7 @@ namespace SpaceBattle2128
 {
     class Enemy : Actor
     {
+        public bool dead = false;
         public int rangeOfDetection;
         protected Enemy(Enemy enemy) : base(enemy) { }
 
@@ -67,6 +68,12 @@ namespace SpaceBattle2128
                 GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;
                 PlayerStats.enemyKills++;
                 return;
+            }
+
+            if(dead)
+            {
+                GameScene.currentGameScene.grid.tiles[position.x, position.y].currentObject = null;
+                PlayerStats.enemyKills++;
             }
 
             MoveTo(minPos);
